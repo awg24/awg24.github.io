@@ -258,6 +258,11 @@ $(document).ready(function(){
 
 	function render(messages) {
 		var returnHtml = '';
+
+		if(checkMessageLength < messages.length){
+			var snd = new Audio("sounds/beep9.mp3");
+			snd.play();
+		}
 		
 		for(var i=0; i<messages.length; i++) {
 			var checkForHttps = messages[i].body.substring(0,8);
