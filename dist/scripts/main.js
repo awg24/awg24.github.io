@@ -14,6 +14,7 @@ $(document).ready(function(){
 	var $settings = $("#settings");
 	var $userSettings = $("#user-settings");
 	var $saveSetting = $("#save-settings");
+	var checkMessageLength = 0;
 	var myUsernameArray = [];
 	var person;
 	var theUser;
@@ -301,6 +302,7 @@ $(document).ready(function(){
 				}
 			}
 		}
+		checkMessageLength = messages.length;
 		return returnHtml;
 	}
 
