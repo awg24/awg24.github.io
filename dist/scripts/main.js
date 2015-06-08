@@ -260,10 +260,8 @@ $(document).ready(function(){
 		var returnHtml = '';
 
 		if(checkMessageLength < messages.length){
-			if(person !== messages[i].name){ 
-				var snd = new Audio("sounds/beep9.mp3");
-				snd.play();
-			}
+			var snd = new Audio("sounds/beep9.mp3");
+			snd.play();
 		}
 		
 		for(var i=0; i<messages.length; i++) {
@@ -273,6 +271,12 @@ $(document).ready(function(){
 			var checkForHttp = messages[i].body.substring(0,7);
 			var checkForWww = messages[i].body.substring(0,4);
 
+			if(checkMessageLength < messages.length){
+				if(person !== messages[i].name){ 
+					var snd = new Audio("sounds/beep9.mp3");
+					snd.play();
+				}
+			}
 			if(messages[i].name === "chatbot"){
 				returnHtml += '<div class=comment>['+messages[i].timestamp+"] <span id=chatbot>"+messages[i].name + "</span>: " + messages[i].body + "</div>";
 			} else {
