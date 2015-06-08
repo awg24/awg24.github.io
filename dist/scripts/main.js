@@ -260,8 +260,10 @@ $(document).ready(function(){
 		var returnHtml = '';
 
 		if(checkMessageLength < messages.length){
-			var snd = new Audio("sounds/beep9.mp3");
-			snd.play();
+			if(person !== message[i].name){ 
+				var snd = new Audio("sounds/beep9.mp3");
+				snd.play();
+			}
 		}
 		
 		for(var i=0; i<messages.length; i++) {
