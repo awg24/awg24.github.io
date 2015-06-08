@@ -260,7 +260,7 @@ $(document).ready(function(){
 		var returnHtml = '';
 
 		if(checkMessageLength < messages.length){
-			if(person !== message[i].name){ 
+			if(person !== messages[i].name){ 
 				var snd = new Audio("sounds/beep9.mp3");
 				snd.play();
 			}
