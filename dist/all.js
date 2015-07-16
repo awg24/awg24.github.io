@@ -34807,7 +34807,7 @@ module.exports = Backbone.Collection.extend({
     parseClassName: 'NonProfit'
 });
 
-},{"../models/NonProfitModel":178,"backparse":4}],165:[function(require,module,exports){
+},{"../models/NonProfitModel":179,"backparse":4}],165:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -34825,7 +34825,7 @@ module.exports = Backbone.Collection.extend({
     parseClassName: 'UserOrganizerRelation'
 });
 
-},{"../models/UserOrganizationRelationModel":180,"backbone/node_modules/underscore":3,"backparse":4}],166:[function(require,module,exports){
+},{"../models/UserOrganizationRelationModel":181,"backbone/node_modules/underscore":3,"backparse":4}],166:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -34843,7 +34843,7 @@ module.exports = Backbone.Collection.extend({
     parseClassName: '_User'
 });
 
-},{"../models/UserModel":179,"backbone/node_modules/underscore":3,"backparse":4}],167:[function(require,module,exports){
+},{"../models/UserModel":180,"backbone/node_modules/underscore":3,"backparse":4}],167:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35118,6 +35118,7 @@ module.exports = React.createClass({
 		//user.save({portfolioUrl: "http:test/ha"});
 	},
 	submitApp: function submitApp() {
+		var that = this;
 		var designerType = this.refs.designerType.getDOMNode().value;
 		var phoneNum = this.refs.phoneNum.getDOMNode().value;
 		var userEdu = $("input[name=edu-type]:checked").val();
@@ -35161,6 +35162,7 @@ module.exports = React.createClass({
 		}, {
 			success: function success() {
 				console.log("saved to server");
+				that.props.routing.navigate("success", { trigger: true });
 			},
 			error: function error() {
 				console.log("didnt work yo");
@@ -35552,6 +35554,7 @@ module.exports = React.createClass({
 		);
 	},
 	submitNonProfitApp: function submitNonProfitApp() {
+		var that = this;
 		var orgName = this.refs.orgName.getDOMNode().value;
 		var site = this.refs.site.getDOMNode().value;
 		var contactName = this.refs.contactName.getDOMNode().value;
@@ -35580,6 +35583,7 @@ module.exports = React.createClass({
 		nonProfit.save(null, {
 			success: function success() {
 				console.log("saved to server");
+				that.props.routing.navigate("success", { trigger: true });
 			},
 			error: function error() {
 				console.log("didnt save to server");
@@ -35588,7 +35592,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/NonProfitModel":178,"jquery":7,"react":162}],173:[function(require,module,exports){
+},{"../models/NonProfitModel":179,"jquery":7,"react":162}],173:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35798,7 +35802,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/RelationCollection":165,"../collections/UserCollection":166,"../models/UserOrganizationRelationModel":180,"./PDFViewer":174,"async":1,"react":162}],174:[function(require,module,exports){
+},{"../collections/RelationCollection":165,"../collections/UserCollection":166,"../models/UserOrganizationRelationModel":181,"./PDFViewer":174,"async":1,"react":162}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36155,6 +36159,27 @@ module.exports = React.createClass({
 "use strict";
 
 var React = require("react");
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "container center-block" },
+			React.createElement(
+				"div",
+				{ className: "well text-center" },
+				"Thank you for your submission, we will get back to shortly!"
+			)
+		);
+	}
+});
+
+},{"react":162}],178:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
 var Backbone = require("backbone");
 
 var LoginPortal = require("./components/LoginPortal");
@@ -36165,6 +36190,7 @@ var OrgPage = require("./components/OrganizationPage");
 var ResultsPage = require("./components/ResultsPage");
 var NoPremission = require("./components/NoPremission");
 var Banner = require("./components/BannerComponent");
+var SuccessPage = require("./components/SubmitSuccess");
 
 var containerEl = document.getElementById("container");
 var bannerEl = document.getElementById("banner");
@@ -36178,7 +36204,8 @@ var App = Backbone.Router.extend({
 		"login": "login",
 		"signUp": "signUp",
 		"application/:type": "application",
-		"results": "results"
+		"results": "results",
+		"success": "submitSuccess"
 	},
 	login: function login() {
 		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)";
@@ -36193,7 +36220,21 @@ var App = Backbone.Router.extend({
 		document.body.style.backgroundRepeat = "no-repeat";
 		document.body.style.backgroundSize = "cover";
 		document.body.style.color = "white";
+		React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 		React.render(React.createElement(SignUpPortal, { routing: this, user: user }), containerEl);
+	},
+	submitSuccess: function submitSuccess() {
+		var that = this;
+		React.render(React.createElement(AppBanner, { loggedInUser: user, routing: this }), document.getElementById("banner"));
+		user.me({
+			error: function error(user, res) {
+				console.log(res);
+				that.navigate("", { trigger: true });
+			},
+			success: function success() {
+				React.render(React.createElement(SuccessPage, { routing: that, loggedInUser: user }), containerEl);
+			}
+		});
 	},
 	results: function results() {
 		React.render(React.createElement(AppBanner, { loggedInUser: user, routing: this }), document.getElementById("banner"));
@@ -36244,7 +36285,7 @@ var myRoutes = new App();
 React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 Backbone.history.start();
 
-},{"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./models/UserModel":179,"backbone":2,"react":162}],178:[function(require,module,exports){
+},{"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./components/SubmitSuccess":177,"./models/UserModel":180,"backbone":2,"react":162}],179:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36272,7 +36313,7 @@ module.exports = Backbone.Model.extend({
 	parseClassName: 'NonProfit'
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],179:[function(require,module,exports){
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],180:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36336,7 +36377,7 @@ module.exports = Backbone.Model.extend({
 	isUser: true
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],180:[function(require,module,exports){
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],181:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36358,7 +36399,7 @@ module.exports = Backbone.Model.extend({
 	parseClassName: 'UserOrganizerRelation'
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}]},{},[177])
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}]},{},[178])
 
 
 //# sourceMappingURL=all.js.map

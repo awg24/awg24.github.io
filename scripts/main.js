@@ -9,6 +9,7 @@ var OrgPage = require("./components/OrganizationPage");
 var ResultsPage = require("./components/ResultsPage");
 var NoPremission = require("./components/NoPremission");
 var Banner = require("./components/BannerComponent");
+var SuccessPage = require("./components/SubmitSuccess");
 
 var containerEl = document.getElementById("container");
 var bannerEl = document.getElementById("banner");
@@ -23,7 +24,8 @@ var App = Backbone.Router.extend({
 		"login": "login",
 		"signUp": "signUp",
 		"application/:type":"application",
-		"results":"results"
+		"results":"results",
+		"success":"submitSuccess"
 	},
 	login: function(){
 		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
@@ -38,7 +40,21 @@ var App = Backbone.Router.extend({
 		document.body.style.backgroundRepeat = "no-repeat";
 		document.body.style.backgroundSize = "cover";
 		document.body.style.color = "white";
+		React.render(<Banner loggedInUser={user} routing={myRoutes} />, bannerEl);
 		React.render(<SignUpPortal routing={this} user={user} />, containerEl);
+	},
+	submitSuccess: function(){
+		var that = this;
+		React.render(<AppBanner loggedInUser={user} routing={this}/>, document.getElementById("banner"));
+		user.me({
+			error: function(user, res){
+				console.log(res);
+				that.navigate("", {trigger: true});
+			},
+			success: function(){
+				React.render(<SuccessPage routing={that} loggedInUser={user}/>, containerEl);
+			}
+		});
 	},
 	results: function(){
 		React.render(<AppBanner loggedInUser={user} routing={this}/>, document.getElementById("banner"));

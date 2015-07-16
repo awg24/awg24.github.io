@@ -101,6 +101,7 @@ module.exports = React.createClass({
 		);
 	},
 	submitNonProfitApp: function(){
+		var that = this;
 		var orgName = this.refs.orgName.getDOMNode().value;
 		var site = this.refs.site.getDOMNode().value;
 		var contactName = this.refs.contactName.getDOMNode().value;
@@ -129,9 +130,11 @@ module.exports = React.createClass({
 		nonProfit.save(null, {
 			success: function(){
 				console.log("saved to server");
+				that.props.routing.navigate("success",{trigger: true});
 			},
 			error: function(){
 				console.log("didnt save to server");
+				
 			}
 		});
 

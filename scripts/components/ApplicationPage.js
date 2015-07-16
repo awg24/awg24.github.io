@@ -123,6 +123,7 @@ module.exports = React.createClass({
 		//user.save({portfolioUrl: "http:test/ha"});
 	},
 	submitApp: function(){
+		var that = this;
 		var designerType = this.refs.designerType.getDOMNode().value;
 		var phoneNum = this.refs.phoneNum.getDOMNode().value;
 		var userEdu = $("input[name=edu-type]:checked").val();
@@ -166,9 +167,11 @@ module.exports = React.createClass({
 		},{
 			success: function(){
 				console.log("saved to server");
+				that.props.routing.navigate("success",{trigger: true});
 			},
 			error: function(){
 				console.log("didnt work yo");
+
 			}
 		});
 	}
