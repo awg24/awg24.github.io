@@ -71,48 +71,96 @@ module.exports = React.createClass({
 					var model = theApplicants.findWhere({username: name});
 					model.set("skillRating", theRatings[name]);
 				}
-				console.log(theApplicants);
-				console.log(theNonProfits);
-				var master = {};
-				theNonProfits.map(function(model){
-					var type = model.get("nonProfitType");
-					if(master.hasOwnProperty(type)){
-						master[type].count++;
-					} else {
-						master[type] = {count: 1, members: []};
-					}
-				});
+
+				var master = [];
 				var sortedApplicants = theApplicants.sortBy(function(model){
 					return -1*model.get("skillRating");
 				});
+
+				var limit = Math.floor((sortedApplicants.length-10)/(theNonProfits.models.length));
+				var acceptedNonProfits = _.first(theNonProfits.models, limit);
+				var acceptedApplicants = _.first(sortedApplicants, sortedApplicants.length-10);
+
+				console.log("applicants:",acceptedApplicants, "non-profits:",acceptedNonProfits);
+
+				acceptedNonProfits.map(function(model){
+					var name = model.get("orgName");
+					var type = model.get("nonProfitType")
+					master.push({orgName: name, type: type, members: []});
+				});
+				
 				var hasDeveloper = false;
-				for(var i = 0; i < sortedApplicants.length; i++){
-					if(sortedApplicants[i].get("designerType") === "Graphic Designer"){
-						if(master["Branding"].members.length === 3){
-							master["Event Collateral"].members.push(sortedApplicants[i].get("name"));
-						} else {
-							master["Branding"].members.push(sortedApplicants[i].get("name"));
-						}
-					} else if(sortedApplicants[i].get("designerType") === "Architect"){
-						if(master["Architecture"].members.length <= 4){
-							master["Architecture"].members.push(sortedApplicants[i].get("name"));
-						}
-					} else if(sortedApplicants[i].get("designerType") === "Web Designer" ||
-							sortedApplicants[i].get("designerType") === "Developer"){
-						if(master["Web"].members.length <= 3){
-							master["Web"].members.push(sortedApplicants[i].get("name"));
-						}
-						if(!hasDeveloper && sortedApplicants[i].get("designerType") === "Developer" &&
-							master["Web"].members.length < 4){
-							master["Web"].members.push(sortedApplicants[i].get("name"));
-							hasDeveloper = true;
-						}
-					} else if(sortedApplicants[i].get("designerType") === "Interior Designer"){
-						if(master["Interior Design"].members.length <= 4){
-							master["Interior Design"].members.push(sortedApplicants[i].get("name"));
+
+				_.each(acceptedApplicants, function(applicant, index){
+					for(var i = 0; i < master.length; i++){
+						switch(master[i].type){
+							case "Branding":
+								if(master[i].members.length <= 3){
+									if(applicant.get("designerType") === "Graphic Designer"){
+										master.members.push(applicant.get("name"));
+									}
+								}
+							case "Event Collateral":
+								if(master[i].members.length < 3){
+									if(applicant.get("designerType") === "Graphic Designer"){
+										master[i].members.push(applicant.get("name"));
+									}
+								}
+								break;
+							case "Web":
+								if(applicant.get("designerType") === "Web Designer" || 
+									applicant.get("designerType") === "Developer"){
+									if(master[i].members.length <= 3){
+										master[i].members.push(applicant.get("name"));
+									}
+									if(!hasDeveloper && acceptedApplicants[i].get("designerType") === "Developer" &&
+										master[i].members.length < 4){
+										master[i].members.push(applicant.get("name"));
+										hasDeveloper = true;
+									}
+								}
+								break;
+							case "Interior Design":
+								if(master[i].members.length < 4){
+									master[i].members.push(applicant.get("name"));
+								}
+								break;
+							case "Architecture":
+								if(master[i].members.length < 4){
+									master[i].members.push(applicant.get("name"));
+								}
+								break;
 						}
 					}
-				}
+				});
+
+				// for(var i = 0; i < acceptedApplicants.length; i++){
+				// 	if(acceptedApplicants[i].get("designerType") === "Graphic Designer"){
+				// 		if(master["Branding"].members.length === 3){
+				// 			master["Event Collateral"].members.push(acceptedApplicants[i].get("name"));
+				// 		} else {
+				// 			master["Branding"].members.push(acceptedApplicants[i].get("name"));
+				// 		}
+				// 	} else if(acceptedApplicants[i].get("designerType") === "Architect"){
+				// 		if(master["Architecture"].members.length <= 4){
+				// 			master["Architecture"].members.push(acceptedApplicants[i].get("name"));
+				// 		}
+				// 	} else if(acceptedApplicants[i].get("designerType") === "Web Designer" ||
+				// 			acceptedApplicants[i].get("designerType") === "Developer"){
+				// 		if(master["Web"].members.length <= 3){
+				// 			master["Web"].members.push(acceptedApplicants[i].get("name"));
+				// 		}
+				// 		if(!hasDeveloper && acceptedApplicants[i].get("designerType") === "Developer" &&
+				// 			master["Web"].members.length < 4){
+				// 			master["Web"].members.push(acceptedApplicants[i].get("name"));
+				// 			hasDeveloper = true;
+				// 		}
+				// 	} else if(acceptedApplicants[i].get("designerType") === "Interior Designer"){
+				// 		if(master["Interior Design"].members.length <= 4){
+				// 			master["Interior Design"].members.push(acceptedApplicants[i].get("name"));
+				// 		}
+				// 	}
+				// }
 				console.log(master);
 			}
 		);
