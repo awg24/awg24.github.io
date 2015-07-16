@@ -3,9 +3,11 @@ var async = require("async");
 var _ = require("backbone/node_modules/underscore");
 var Ratings = require("../collections/RelationCollection");
 var Users = require("../collections/UserCollection");
+var NonProfits = require("../collections/NonProfitCollection");
 Parse.initialize("S6Y7ni0haUcubEj98BcjWPl3lDPaYlVewgl53Prj", "9MYqzYFPqsuMvKAchWSBVZiK3sxzG5hr8jWJ6FU1");
 
 var applicants = new Users();
+var nonProfits = new NonProfits();
 var ratings = new Ratings();
 
 module.exports = React.createClass({
@@ -25,75 +27,109 @@ module.exports = React.createClass({
 		);
 	},
 	calculateResults: function(){
-
-		Parse.Cloud.run("storeUserRating",null, {
-			success: function(data){
-				console.log(data);
+		console.log("do i work?")
+		async.parallel([
+			function(callback){
+				Parse.Cloud.run("storeUserRating",null, {
+					success: function(data){
+						callback(null, data);
+					},
+					error: function(err){
+						callback(err);
+					}
+				});
 			},
-			error: function(err){
-				console.log(err)
+			function(callback){
+				applicants.fetch({
+					query: {userType: "applicant"},
+					success: function(data){
+						callback(null, data);
+					},
+					error: function(err){
+						callback(err);
+					}
+				});
+			},
+			function(callback){
+				nonProfits.fetch({
+					success: function(data){
+						callback(null, data);
+					},
+					error: function(err){
+						callback(err);
+					}
+				});
 			}
-		})
+			], function(err, results){
+				console.log(results);
 
-		// async.parallel([
-		// 	function(callback){
-		// 		ratings.fetch({
-		// 			success: function(data){
-		// 				console.log(data);
-		// 				callback(null, data);
-		// 			},
-		// 			error: function(err){
-		// 				console.log(err);
-		// 				callback(err);
-		// 			}
-		// 		});	
-		// 	},
-		// 	function(callback){
-		// 		applicants.fetch({
-		// 			query: {userType: "applicant"},
-		// 			success: function(data){
-		// 				console.log(data);
-		// 				callback(null, data);
-		// 			},
-		// 			error: function(err){
-		// 				console.log(err);
-		// 				callback(err);
-		// 			}
-		// 		})
-		// 	}], function(err, results){
-		// 			console.log(results);
-			// 		var allRatings = results[0];
-			// 		var allApplicants = results[1].models;
-			// 		var ratingSelection = [];
-			// 		for(var i = 0; i < allApplicants.length; i++){
-			// 			ratingSelection = allRatings.where({ApplicantId: allApplicants[i].id});
-			// 			var applicantRating = averageOut(ratingSelection);
-			// 			sendToParse(allApplicants[i], applicantRating);
-			// 		}
+				var theRatings = results[0];
+				var theApplicants = results[1];
+				var theNonProfits = results[2];
 
-			// 		function averageOut(appArray){
-			// 			var total = 0;
-			// 			for(var i = 0; i < appArray.length; i++){
-			// 				total += parseInt(appArray[i].attributes.rating);
-			// 			}
-
-			// 			return (total/appArray.length);
-			// 		}
-			// 		function sendToParse(model, rating){
-			// 			model.set("skillRating", rating);
-			// 			model.unset("password");
-			// 			model.save(null, {
-			// 				success: function(){
-			// 					console.log("saved");
-			// 				}, 
-			// 				error: function(){
-			// 					console.log("not saved");
-			// 				}
-			// 			});
-			// 		}
-			// 	}
-			// );
-				//}
-			//);
-		}
+				for(var name in theRatings){
+					var model = theApplicants.findWhere({username: name});
+					model.set("skillRating", theRatings[name]);
+				}
+				console.log(theApplicants);
+				console.log(theNonProfits);
+				var master = {};
+				theNonProfits.map(function(model){
+					var type = model.get("nonProfitType");
+					if(master.hasOwnProperty(type)){
+						master[type].count++;
+					} else {
+						master[type] = {count: 1, members: []};
+					}
+				});
+				var sortedApplicants = theApplicants.sortBy(function(model){
+					return -1*model.get("skillRating");
+				});
+				var hasDeveloper = false;
+				for(var i = 0; i < sortedApplicants.length; i++){
+					if(sortedApplicants[i].get("designerType") === "Graphic Designer"){
+						if(master["Branding"].members.length === 3){
+							master["Event Collateral"].members.push(sortedApplicants[i].get("name"));
+						} else {
+							master["Branding"].members.push(sortedApplicants[i].get("name"));
+						}
+					} else if(sortedApplicants[i].get("designerType") === "Architect"){
+						if(master["Architecture"].members.length <= 4){
+							master["Architecture"].members.push(sortedApplicants[i].get("name"));
+						}
+					} else if(sortedApplicants[i].get("designerType") === "Web Designer" ||
+							sortedApplicants[i].get("designerType") === "Developer"){
+						if(master["Web"].members.length <= 3){
+							master["Web"].members.push(sortedApplicants[i].get("name"));
+						}
+						if(!hasDeveloper && sortedApplicants[i].get("designerType") === "Developer" &&
+							master["Web"].members.length < 4){
+							master["Web"].members.push(sortedApplicants[i].get("name"));
+							hasDeveloper = true;
+						}
+					} else if(sortedApplicants[i].get("designerType") === "Interior Designer"){
+						if(master["Interior Design"].members.length <= 4){
+							master["Interior Design"].members.push(sortedApplicants[i].get("name"));
+						}
+					}
+				}
+				console.log(master);
+			}
+		);
+	}
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

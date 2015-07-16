@@ -34800,6 +34800,22 @@ var Backbone = require('backparse')({
     apiVersion: 1
 });
 
+var NonProfit = require('../models/NonProfitModel');
+
+module.exports = Backbone.Collection.extend({
+    model: NonProfit,
+    parseClassName: 'NonProfit'
+});
+
+},{"../models/NonProfitModel":178,"backparse":4}],165:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backparse')({
+    appId: 'S6Y7ni0haUcubEj98BcjWPl3lDPaYlVewgl53Prj',
+    apiKey: 'E6IQ4vAZa9rfubgL3lpRvm5RXPAmcRm3rAhiWC69',
+    apiVersion: 1
+});
+
 var _ = require('backbone/node_modules/underscore');
 
 var Relation = require('../models/UserOrganizationRelationModel');
@@ -34809,7 +34825,7 @@ module.exports = Backbone.Collection.extend({
     parseClassName: 'UserOrganizerRelation'
 });
 
-},{"../models/UserOrganizationRelationModel":179,"backbone/node_modules/underscore":3,"backparse":4}],165:[function(require,module,exports){
+},{"../models/UserOrganizationRelationModel":180,"backbone/node_modules/underscore":3,"backparse":4}],166:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -34827,7 +34843,7 @@ module.exports = Backbone.Collection.extend({
     parseClassName: '_User'
 });
 
-},{"../models/UserModel":178,"backbone/node_modules/underscore":3,"backparse":4}],166:[function(require,module,exports){
+},{"../models/UserModel":179,"backbone/node_modules/underscore":3,"backparse":4}],167:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -34874,7 +34890,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":162}],167:[function(require,module,exports){
+},{"react":162}],168:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35153,7 +35169,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../../node_modules/config/config":6,"./AppBanner":166,"jquery":7,"react":162}],168:[function(require,module,exports){
+},{"../../node_modules/config/config":6,"./AppBanner":167,"jquery":7,"react":162}],169:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35213,7 +35229,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":162}],169:[function(require,module,exports){
+},{"react":162}],170:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35300,7 +35316,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":162}],170:[function(require,module,exports){
+},{"react":162}],171:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35317,7 +35333,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":162}],171:[function(require,module,exports){
+},{"react":162}],172:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35382,7 +35398,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio1", name: "nonProfitType", value: "event collateral", type: "radio" }),
+					React.createElement("input", { id: "radio1", name: "nonProfitType", value: "Event Collateral", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio1" },
@@ -35413,7 +35429,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio2", name: "nonProfitType", value: "web", type: "radio" }),
+					React.createElement("input", { id: "radio2", name: "nonProfitType", value: "Web", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio2" },
@@ -35445,7 +35461,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio3", name: "nonProfitType", value: "interior design", type: "radio" }),
+					React.createElement("input", { id: "radio3", name: "nonProfitType", value: "Interior Design", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio3" },
@@ -35477,7 +35493,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio4", name: "nonProfitType", value: "branding", type: "radio" }),
+					React.createElement("input", { id: "radio4", name: "nonProfitType", value: "Branding", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio4" },
@@ -35503,7 +35519,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio5", name: "nonProfitType", value: "architecture", type: "radio" }),
+					React.createElement("input", { id: "radio5", name: "nonProfitType", value: "Architecture", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio5" },
@@ -35572,7 +35588,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/NonProfitModel":177,"jquery":7,"react":162}],172:[function(require,module,exports){
+},{"../models/NonProfitModel":178,"jquery":7,"react":162}],173:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35782,7 +35798,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../collections/RelationCollection":164,"../collections/UserCollection":165,"../models/UserOrganizationRelationModel":179,"./PDFViewer":173,"async":1,"react":162}],173:[function(require,module,exports){
+},{"../collections/RelationCollection":165,"../collections/UserCollection":166,"../models/UserOrganizationRelationModel":180,"./PDFViewer":174,"async":1,"react":162}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35831,7 +35847,7 @@ module.exports = React.createClass({
 // 	// });
 // }
 
-},{"react":162}],174:[function(require,module,exports){
+},{"react":162}],175:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -35839,9 +35855,11 @@ var async = require("async");
 var _ = require("backbone/node_modules/underscore");
 var Ratings = require("../collections/RelationCollection");
 var Users = require("../collections/UserCollection");
+var NonProfits = require("../collections/NonProfitCollection");
 Parse.initialize("S6Y7ni0haUcubEj98BcjWPl3lDPaYlVewgl53Prj", "9MYqzYFPqsuMvKAchWSBVZiK3sxzG5hr8jWJ6FU1");
 
 var applicants = new Users();
+var nonProfits = new NonProfits();
 var ratings = new Ratings();
 
 module.exports = React.createClass({
@@ -35867,79 +35885,92 @@ module.exports = React.createClass({
 		);
 	},
 	calculateResults: function calculateResults() {
+		console.log("do i work?");
+		async.parallel([function (callback) {
+			Parse.Cloud.run("storeUserRating", null, {
+				success: function success(data) {
+					callback(null, data);
+				},
+				error: function error(err) {
+					callback(err);
+				}
+			});
+		}, function (callback) {
+			applicants.fetch({
+				query: { userType: "applicant" },
+				success: function success(data) {
+					callback(null, data);
+				},
+				error: function error(err) {
+					callback(err);
+				}
+			});
+		}, function (callback) {
+			nonProfits.fetch({
+				success: function success(data) {
+					callback(null, data);
+				},
+				error: function error(err) {
+					callback(err);
+				}
+			});
+		}], function (err, results) {
+			console.log(results);
 
-		Parse.Cloud.run("storeUserRating", null, {
-			success: function success(data) {
-				console.log(data);
-			},
-			error: function error(err) {
-				console.log(err);
+			var theRatings = results[0];
+			var theApplicants = results[1];
+			var theNonProfits = results[2];
+
+			for (var name in theRatings) {
+				var model = theApplicants.findWhere({ username: name });
+				model.set("skillRating", theRatings[name]);
 			}
+			console.log(theApplicants);
+			console.log(theNonProfits);
+			var master = {};
+			theNonProfits.map(function (model) {
+				var type = model.get("nonProfitType");
+				if (master.hasOwnProperty(type)) {
+					master[type].count++;
+				} else {
+					master[type] = { count: 1, members: [] };
+				}
+			});
+			var sortedApplicants = theApplicants.sortBy(function (model) {
+				return -1 * model.get("skillRating");
+			});
+			var hasDeveloper = false;
+			for (var i = 0; i < sortedApplicants.length; i++) {
+				if (sortedApplicants[i].get("designerType") === "Graphic Designer") {
+					if (master["Branding"].members.length === 3) {
+						master["Event Collateral"].members.push(sortedApplicants[i].get("name"));
+					} else {
+						master["Branding"].members.push(sortedApplicants[i].get("name"));
+					}
+				} else if (sortedApplicants[i].get("designerType") === "Architect") {
+					if (master["Architecture"].members.length <= 4) {
+						master["Architecture"].members.push(sortedApplicants[i].get("name"));
+					}
+				} else if (sortedApplicants[i].get("designerType") === "Web Designer" || sortedApplicants[i].get("designerType") === "Developer") {
+					if (master["Web"].members.length <= 3) {
+						master["Web"].members.push(sortedApplicants[i].get("name"));
+					}
+					if (!hasDeveloper && sortedApplicants[i].get("designerType") === "Developer" && master["Web"].members.length < 4) {
+						master["Web"].members.push(sortedApplicants[i].get("name"));
+						hasDeveloper = true;
+					}
+				} else if (sortedApplicants[i].get("designerType") === "Interior Designer") {
+					if (master["Interior Design"].members.length <= 4) {
+						master["Interior Design"].members.push(sortedApplicants[i].get("name"));
+					}
+				}
+			}
+			console.log(master);
 		});
 	}
 });
-// async.parallel([
-// 	function(callback){
-// 		ratings.fetch({
-// 			success: function(data){
-// 				console.log(data);
-// 				callback(null, data);
-// 			},
-// 			error: function(err){
-// 				console.log(err);
-// 				callback(err);
-// 			}
-// 		});	
-// 	},
-// 	function(callback){
-// 		applicants.fetch({
-// 			query: {userType: "applicant"},
-// 			success: function(data){
-// 				console.log(data);
-// 				callback(null, data);
-// 			},
-// 			error: function(err){
-// 				console.log(err);
-// 				callback(err);
-// 			}
-// 		})
-// 	}], function(err, results){
-// 			console.log(results);
-// 		var allRatings = results[0];
-// 		var allApplicants = results[1].models;
-// 		var ratingSelection = [];
-// 		for(var i = 0; i < allApplicants.length; i++){
-// 			ratingSelection = allRatings.where({ApplicantId: allApplicants[i].id});
-// 			var applicantRating = averageOut(ratingSelection);
-// 			sendToParse(allApplicants[i], applicantRating);
-// 		}
 
-// 		function averageOut(appArray){
-// 			var total = 0;
-// 			for(var i = 0; i < appArray.length; i++){
-// 				total += parseInt(appArray[i].attributes.rating);
-// 			}
-
-// 			return (total/appArray.length);
-// 		}
-// 		function sendToParse(model, rating){
-// 			model.set("skillRating", rating);
-// 			model.unset("password");
-// 			model.save(null, {
-// 				success: function(){
-// 					console.log("saved");
-// 				},
-// 				error: function(){
-// 					console.log("not saved");
-// 				}
-// 			});
-// 		}
-// 	}
-// );
-//}
-//);
-
-},{"../collections/RelationCollection":164,"../collections/UserCollection":165,"async":1,"backbone/node_modules/underscore":3,"react":162}],175:[function(require,module,exports){
+},{"../collections/NonProfitCollection":164,"../collections/RelationCollection":165,"../collections/UserCollection":166,"async":1,"backbone/node_modules/underscore":3,"react":162}],176:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36120,7 +36151,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BannerComponent":168,"jquery":7,"react":162}],176:[function(require,module,exports){
+},{"./BannerComponent":169,"jquery":7,"react":162}],177:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36213,7 +36244,7 @@ var myRoutes = new App();
 React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 Backbone.history.start();
 
-},{"./components/AppBanner":166,"./components/ApplicationPage":167,"./components/BannerComponent":168,"./components/LoginPortal":169,"./components/NoPremission":170,"./components/NonProfitApplication":171,"./components/OrganizationPage":172,"./components/ResultsPage":174,"./components/SignUpPortal":175,"./models/UserModel":178,"backbone":2,"react":162}],177:[function(require,module,exports){
+},{"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./models/UserModel":179,"backbone":2,"react":162}],178:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36241,7 +36272,7 @@ module.exports = Backbone.Model.extend({
 	parseClassName: 'NonProfit'
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],178:[function(require,module,exports){
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],179:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36305,7 +36336,7 @@ module.exports = Backbone.Model.extend({
 	isUser: true
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],179:[function(require,module,exports){
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}],180:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({
@@ -36327,7 +36358,7 @@ module.exports = Backbone.Model.extend({
 	parseClassName: 'UserOrganizerRelation'
 });
 
-},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}]},{},[176])
+},{"backbone/node_modules/underscore":3,"backparse":4,"validator":163}]},{},[177])
 
 
 //# sourceMappingURL=all.js.map

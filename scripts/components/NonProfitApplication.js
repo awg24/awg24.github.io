@@ -35,7 +35,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio1" name="nonProfitType" value="event collateral" type="radio"/><label htmlFor="radio1"><span className="change-label">
+						<input id="radio1" name="nonProfitType" value="Event Collateral" type="radio"/><label htmlFor="radio1"><span className="change-label">
 						</span></label><span>Event Collateral</span>
 					</div>
 					<div className="side-padding">
@@ -47,7 +47,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio2" name="nonProfitType" value="web" type="radio"/><label htmlFor="radio2"><span className="change-label">
+						<input id="radio2" name="nonProfitType" value="Web" type="radio"/><label htmlFor="radio2"><span className="change-label">
 						</span></label><span>Web</span><br/>
 					</div>
 					<div className="side-padding">
@@ -59,7 +59,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio3" name="nonProfitType" value="interior design" type="radio"/><label htmlFor="radio3"><span className="change-label">
+						<input id="radio3" name="nonProfitType" value="Interior Design" type="radio"/><label htmlFor="radio3"><span className="change-label">
 						</span></label><span>Interior Design</span><br/>
 					</div>
 					<div className="side-padding">
@@ -71,7 +71,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio4" name="nonProfitType" value="branding" type="radio"/><label htmlFor="radio4"><span className="change-label">
+						<input id="radio4" name="nonProfitType" value="Branding" type="radio"/><label htmlFor="radio4"><span className="change-label">
 						</span></label><span>Full Branding or Branding Redesign</span><br/>
 						</div>
 					<div className="side-padding">
@@ -83,7 +83,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio5" name="nonProfitType" value="architecture" type="radio"/><label htmlFor="radio5"><span className="change-label">
+						<input id="radio5" name="nonProfitType" value="Architecture" type="radio"/><label htmlFor="radio5"><span className="change-label">
 						</span></label><span>Architecture</span><br/>
 					</div>
 					<div className="side-padding">
