@@ -21,22 +21,33 @@ module.exports = React.createClass({
 		this.calculateResults();
 	},
 	render: function(){
+		var keyCounter = 0;
 		var toShow = this.state.results.map(function(project){
+
+			var members = project.members.map(function(member){
+				if(member !== ""){
+					keyCounter++;
+					return <p key={"member "+keyCounter}>{member}</p>
+				}
+			});
 			return (
-				<div>
-					<h3>{project.orgName}</h3>
-					<p>{project.members.toString()}</p>
+				<div key={"well "+keyCounter} className="text-left">
+					<div className="well center-block col-sm-5 add-more-height">
+						<h3>Team {" "+project.orgName}</h3>
+						<p>{members}</p>
+					</div>
 				</div>
 			);
+
 		});
 		return (
-			<div>
+			<div className="text-center">
+				<h1>Team Assignments</h1>
 				{toShow}
 			</div>
 		);
 	},
 	calculateResults: function(){
-		console.log("do i work?");
 		var that = this;
 		async.parallel([
 			function(callback){
@@ -71,13 +82,10 @@ module.exports = React.createClass({
 				});
 			}
 			], function(err, results){
-				console.log(results);
-
+				
 				var theRatings = results[0];
 				var theApplicants = results[1];
 				var theNonProfits = results[2];
-
-				console.log(theRatings);
 
 				for(var name in theRatings){
 					var model = theApplicants.findWhere({username: name});
@@ -88,18 +96,8 @@ module.exports = React.createClass({
 					return -1*model.get("skillRating");
 				});
 
-				console.log(sortedApplicants);
-
-				var limit = Math.floor((sortedApplicants.length-10)/(theNonProfits.models.length));
 				var acceptedNonProfits = theNonProfits.models;
 				var acceptedApplicants = _.first(sortedApplicants, sortedApplicants.length-10);
-
-				var difference = _.difference(sortedApplicants, acceptedApplicants);
-				console.log(difference);
-				difference.map(function(model){
-					console.log(model.get("name"),"who does", model.get("designerType"));
-				});
-				//console.log("applicants:",acceptedApplicants, "non-profits:",acceptedNonProfits);
 
 				acceptedNonProfits.map(function(model){
 					var name = model.get("orgName");
@@ -119,22 +117,17 @@ module.exports = React.createClass({
 							case "Branding":
 								if(master[i].members.length < 3){
 									if(applicant.get("designerType") === "Graphic Designer"){
-										master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
-										finished = true;
-										break;
-									} else {
-										didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
+										master[i].members.push(applicant.get("name"));
+										finished = true;	
 									}
 								}
-								
+								break;
 							case "Event Collateral":
 								if(master[i].members.length < 3){
 									if(applicant.get("designerType") === "Graphic Designer"){
-										master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
+										master[i].members.push(applicant.get("name"));
 										finished = true;
-									} else {
-										didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
-									}
+									} 
 								}
 								break;
 							case "Web":
@@ -147,40 +140,34 @@ module.exports = React.createClass({
 										}
 									});
 									if(master[i].members.length < 4 && counter !== 3){
-										master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
+										master[i].members.push(applicant.get("name"));
 										finished = true;
-									} else {
-										didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
 									}
 									
 								} else if(!master[i].hasDeveloper && applicant.get("designerType") === "Developer" &&
 											master[i].members.length < 4){
-											master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
+											master[i].members.push(applicant.get("name"));
 											master[i].hasDeveloper = true;
 											finished = true;
-										} else {
-											didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
-										}
+										} 
 								break;
 							case "Interior Design":
 								if(applicant.get("designerType") === "Interior Designer"){
 									if(master[i].members.length < 4){
-										master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
+										master[i].members.push(applicant.get("name"));
 										finished = true;
-									} else {
-										didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
-									}
+									} 
 								}
 								break;
 							case "Architecture":
 								if(applicant.get("designerType") === "Architect"){
 									if(master[i].members.length < 4){
-										master[i].members.push(applicant.get("name")+" "+applicant.get("designerType"));
+										master[i].members.push(applicant.get("name"));
 										finished = true;
-									} else {
-										didntMakeIt.push(applicant.get("name")+" "+applicant.get("designerType"));
-									}
+									} 
 								}
+								break;
+							default: console.log("shouldnt running");
 								break;
 						}
 						if(finished){
@@ -188,53 +175,13 @@ module.exports = React.createClass({
 						}
 					}
 				});
-
-				// for(var i = 0; i < acceptedApplicants.length; i++){
-				// 	if(acceptedApplicants[i].get("designerType") === "Graphic Designer"){
-				// 		if(master["Branding"].members.length === 3){
-				// 			master["Event Collateral"].members.push(acceptedApplicants[i].get("name"));
-				// 		} else {
-				// 			master["Branding"].members.push(acceptedApplicants[i].get("name"));
-				// 		}
-				// 	} else if(acceptedApplicants[i].get("designerType") === "Architect"){
-				// 		if(master["Architecture"].members.length <= 4){
-				// 			master["Architecture"].members.push(acceptedApplicants[i].get("name"));
-				// 		}
-				// 	} else if(acceptedApplicants[i].get("designerType") === "Web Designer" ||
-				// 			acceptedApplicants[i].get("designerType") === "Developer"){
-				// 		if(master["Web"].members.length <= 3){
-				// 			master["Web"].members.push(acceptedApplicants[i].get("name"));
-				// 		}
-				// 		if(!hasDeveloper && acceptedApplicants[i].get("designerType") === "Developer" &&
-				// 			master["Web"].members.length < 4){
-				// 			master["Web"].members.push(acceptedApplicants[i].get("name"));
-				// 			hasDeveloper = true;
-				// 		}
-				// 	} else if(acceptedApplicants[i].get("designerType") === "Interior Designer"){
-				// 		if(master["Interior Design"].members.length <= 4){
-				// 			master["Interior Design"].members.push(acceptedApplicants[i].get("name"));
-				// 		}
-				// 	}
-				// }
-				//console.log(master);
-				//console.log(didntMakeIt);
-				that.setState({results:master});
+				var filteredMaster = _.filter(master, function(group){
+					if(group.members.length !== 0){
+						return group;
+					}
+				});
+				that.setState({results:filteredMaster});
 			}
 		);
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -64,6 +64,9 @@ img {
 .give-top-margin {
 	margin-top: 15px;
 }
+.add-more-height {
+	height: 220px;
+}
 body {
 	color: white;
 	text-decoration: none;

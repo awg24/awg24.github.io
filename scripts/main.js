@@ -66,7 +66,6 @@ var App = Backbone.Router.extend({
 			},
 			success: function(){
 				if(user.attributes.userType === "organizer"){
-					console.log(user);
 					React.render(<ResultsPage routing={that} user={user} />, containerEl);
 				} else {
 					React.render(<NoPremission />, containerEl);
