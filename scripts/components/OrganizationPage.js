@@ -120,13 +120,6 @@ module.exports = React.createClass({
 			query: {username: applicant},
 			success: function(data){
 				var hasBeenRated = new RelationCollection();
-				console.log(data);
-				console.log("before", rating);
-				if(data.models[0].get("designerType") === "Web Designer" || data.models[0].get("designerType") === "Graphic Designer"){
-					var weighted = parseInt(rating)+0.125;
-					rating = String(weighted);
-				}
-				console.log("after", rating);
 				var relation = new Relation({
 					ApplicantId: data.models[0].id,
 					username: applicant,

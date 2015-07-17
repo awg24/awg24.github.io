@@ -34870,7 +34870,7 @@ module.exports = React.createClass({
 				React.createElement("img", { className: "small-img", src: "../../assets/logo.png" }),
 				React.createElement(
 					"label",
-					{ id: "banner-title", className: "add-padding" },
+					{ id: "banner-title", className: "add-padding make-white" },
 					"DESIGN LIKE MAD DESIGNERS/DEVELOPERS"
 				)
 			)
@@ -35180,14 +35180,6 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	render: function render() {
-		var logoutBtn = [];
-		if (this.props.loggedInUser.attributes.username) {
-			logoutBtn.push(React.createElement(
-				"a",
-				{ key: "1", className: "pull-right", onClick: this.logoutUser },
-				"LOGOUT"
-			));
-		}
 		return React.createElement(
 			"div",
 			null,
@@ -35200,11 +35192,7 @@ module.exports = React.createClass({
 					{ className: "col-md-2" },
 					React.createElement("img", { className: "img-responsive", src: "../../assets/logo.png" })
 				),
-				React.createElement(
-					"div",
-					{ className: "col-md-5" },
-					logoutBtn
-				)
+				React.createElement("div", { className: "col-md-5" })
 			),
 			React.createElement(
 				"div",
@@ -35216,18 +35204,6 @@ module.exports = React.createClass({
 				)
 			)
 		);
-	},
-	logoutUser: function logoutUser() {
-		var that = this;
-		this.props.loggedInUser.logout({
-			success: function success(userModel) {
-				console.log("user was logged out");
-				that.props.routing.navigate("", { trigger: true });
-			},
-			error: function error(userModel, response) {
-				console.log("problem logging out the user", response.responseJSON);
-			}
-		});
 	}
 });
 
@@ -35768,13 +35744,6 @@ module.exports = React.createClass({
 			query: { username: applicant },
 			success: function success(data) {
 				var hasBeenRated = new RelationCollection();
-				console.log(data);
-				console.log("before", rating);
-				if (data.models[0].get("designerType") === "Web Designer" || data.models[0].get("designerType") === "Graphic Designer") {
-					var weighted = parseInt(rating) + 0.125;
-					rating = String(weighted);
-				}
-				console.log("after", rating);
 				var relation = new Relation({
 					ApplicantId: data.models[0].id,
 					username: applicant,
@@ -36118,11 +36087,11 @@ module.exports = React.createClass({
 					React.createElement(
 						"div",
 						{ className: "center-block text-left sizing" },
-						React.createElement("input", { id: "radio1", name: "user-type", value: "applicant", type: "radio" }),
+						React.createElement("input", { id: "radio12", name: "user-type", value: "applicant", type: "radio" }),
 						React.createElement(
 							"label",
-							{ htmlFor: "radio1" },
-							React.createElement("span", { className: "change-label" })
+							{ htmlFor: "radio12" },
+							React.createElement("span", { id: "radio12", className: "set-border-color change-label" })
 						),
 						React.createElement(
 							"span",
@@ -36130,11 +36099,11 @@ module.exports = React.createClass({
 							"Applicant"
 						),
 						React.createElement("br", null),
-						React.createElement("input", { id: "radio2", name: "user-type", value: "non-profit", type: "radio" }),
+						React.createElement("input", { id: "radio21", name: "user-type", value: "non-profit", type: "radio" }),
 						React.createElement(
 							"label",
-							{ htmlFor: "radio2" },
-							React.createElement("span", { className: "change-label" })
+							{ htmlFor: "radio21" },
+							React.createElement("span", { id: "radio21", className: "change-label" })
 						),
 						React.createElement(
 							"span",

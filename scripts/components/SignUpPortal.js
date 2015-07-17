@@ -27,9 +27,9 @@ module.exports = React.createClass({
 							<input className="input-style" ref="confirmPassword" type="password" placeholder="Confirm Password" />
 							<div className="errors">{this.state.errors.confirm}</div>
 							<div className="center-block text-left sizing">
-								<input id="radio1" name="user-type" value="applicant" type="radio"/><label htmlFor="radio1"><span className="change-label">
+								<input id="radio12" name="user-type" value="applicant" type="radio"/><label htmlFor="radio12"><span id="radio12" className="set-border-color change-label">
 								</span></label><span>Applicant</span><br/>
-								<input id="radio2" name="user-type" value="non-profit" type="radio"/><label htmlFor="radio2"><span className="change-label">
+								<input id="radio21" name="user-type" value="non-profit" type="radio"/><label htmlFor="radio21"><span id="radio21" className="change-label">
 								</span></label><span>Non-Profit</span><br/>
 							</div>
 							<span className="errors">{this.state.errors.userType}</span>

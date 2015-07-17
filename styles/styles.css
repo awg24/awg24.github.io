@@ -96,14 +96,15 @@ textarea {
 }
 input[type="radio"] + label span {
 	background-color:transparent;
-	border: 2px solid #666666;
+	border: 2px solid;
 }
 .change-label {
 	margin-bottom: -3px;
 }
+
 input[type="radio"]:checked + label span{
-	background-color: white;
-	border: 2px solid white;
+	/*background-color: white;*/
+	border: 2px solid;
 }
 .add-top-margin {
 	margin-top: 40px;
@@ -204,7 +205,11 @@ a {
 }
 a:hover{
 	text-decoration: none;
-	color: #0a90bf;
+	cursor: pointer;
+	color: #28a9e1;
+}
+.make-white {
+	color: white;
 }
 .errors {
 	color: red;
@@ -284,7 +289,6 @@ body {
 	margin-left: auto;
 	margin-bottom: 15px;
 }
-
 .div-top-bottom {
 	border-bottom: 1px solid #666666;
 	border-top: 1px solid #666666;
@@ -295,10 +299,12 @@ body {
 	margin-bottom: 15px;
 }
 input[type="radio"]:checked + label span{
-		background-color: #666666;
-		border: 2px solid #666666;
+	background-color: #666666;
+	border: 2px solid;
 }
-
+.set-border-color {
+	border-color: white;
+}
 @media(max-width:500px){
 	.small-img {
 		height: 70px;
@@ -321,7 +327,7 @@ input[type="radio"]:checked + label span{
 }
 @media(max-width:1010px){
 	
-	#banner {
+	/*#banner {
 		color: white;
 		font-family: 'Raleway', sans-serif;
 		line-height: 1.6;
@@ -333,7 +339,7 @@ input[type="radio"]:checked + label span{
 	input[type="radio"]:checked + label span{
 		background-color: #666666;
 		border: 2px solid #666666;
-	}
+	}*/
 }
 @media(max-width:1010px){
 	a {

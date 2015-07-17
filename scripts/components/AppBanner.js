@@ -9,7 +9,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="go-light-blue text-center container-fluid">
 					<img className="small-img" src="../../assets/logo.png" />
-					<label id="banner-title" className="add-padding">DESIGN LIKE MAD DESIGNERS/DEVELOPERS</label>
+					<label id="banner-title" className="add-padding make-white">DESIGN LIKE MAD DESIGNERS/DEVELOPERS</label>
 				</div>
 				
 			</div>
