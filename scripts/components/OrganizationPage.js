@@ -15,11 +15,6 @@ module.exports = React.createClass({
 				userCollection.fetch({
 					query: {userType:"applicant"},
 					success: function(data){
-						// if(data.models[0].attributes.portfolioUrl){
-						// 	that.setState({applicants: data, pdfFile:data.models[0].attributes.portfolioUrl});
-						// } else {
-						// 	that.setState({applicants: data, pdfFile:data.models[0].attributes.developerLinks});
-						// }
 						callback(null, data);
 					},
 					error: function(err){
@@ -32,13 +27,10 @@ module.exports = React.createClass({
 				exisitingRelations.fetch({
 					query: {OrganizerId: that.props.loggedInUser.id},
 					success: function(data){
-						console.log("worked, got back", data);
-						// that.setState({ratings: data});
 						callback(null, data);
 
 					},
 					error: function(err){
-						console.log("didnt worke");
 						callback(err);
 					}
 				});
@@ -58,9 +50,6 @@ module.exports = React.createClass({
 		};
 	},
 	render: function(){
-
-		console.log('render', this.state.applicants.length, this.state.ratings.length);
-
 		var that = this;
 		
 		if(this.state.applicants){
@@ -69,7 +58,6 @@ module.exports = React.createClass({
 				var ratingModel = that.state.ratings.findWhere({ApplicantId: models.id});
 				if(ratingModel){
 					rating = ratingModel.get("rating");
-					console.log("look here ",rating);
 				}
 				return (
 					<div onClick={that.showPDF} key={models.cid}>
@@ -111,7 +99,6 @@ module.exports = React.createClass({
 			userClicked.fetch({
 				query: {username: event.target.innerHTML},
 				success: function(data){
-					console.log("called",data.models[0].attributes.developerLinks);
 					if(data.models[0].attributes.portfolioUrl){
 						that.setState({pdfFile: data.models[0].attributes.portfolioUrl});
 					} else {
@@ -128,12 +115,18 @@ module.exports = React.createClass({
 		var that = this;
 		var applicant = event.target.parentNode.childNodes[0].innerHTML;
 		var rating = event.target.value;
-		console.log(applicant, "'s rating is",rating);
 		var applicantRated = new UserCollection();
 		applicantRated.fetch({
 			query: {username: applicant},
 			success: function(data){
 				var hasBeenRated = new RelationCollection();
+				console.log(data);
+				console.log("before", rating);
+				if(data.models[0].get("designerType") === "Web Designer" || data.models[0].get("designerType") === "Graphic Designer"){
+					var weighted = parseInt(rating)+0.125;
+					rating = String(weighted);
+				}
+				console.log("after", rating);
 				var relation = new Relation({
 					ApplicantId: data.models[0].id,
 					username: applicant,

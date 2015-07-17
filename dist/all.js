@@ -35613,11 +35613,6 @@ module.exports = React.createClass({
 			userCollection.fetch({
 				query: { userType: "applicant" },
 				success: function success(data) {
-					// if(data.models[0].attributes.portfolioUrl){
-					// 	that.setState({applicants: data, pdfFile:data.models[0].attributes.portfolioUrl});
-					// } else {
-					// 	that.setState({applicants: data, pdfFile:data.models[0].attributes.developerLinks});
-					// }
 					callback(null, data);
 				},
 				error: function error(err) {
@@ -35629,12 +35624,9 @@ module.exports = React.createClass({
 			exisitingRelations.fetch({
 				query: { OrganizerId: that.props.loggedInUser.id },
 				success: function success(data) {
-					console.log("worked, got back", data);
-					// that.setState({ratings: data});
 					callback(null, data);
 				},
 				error: function error(err) {
-					console.log("didnt worke");
 					callback(err);
 				}
 			});
@@ -35652,9 +35644,6 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-
-		console.log("render", this.state.applicants.length, this.state.ratings.length);
-
 		var that = this;
 
 		if (this.state.applicants) {
@@ -35663,7 +35652,6 @@ module.exports = React.createClass({
 				var ratingModel = that.state.ratings.findWhere({ ApplicantId: models.id });
 				if (ratingModel) {
 					rating = ratingModel.get("rating");
-					console.log("look here ", rating);
 				}
 				return React.createElement(
 					"div",
@@ -35759,7 +35747,6 @@ module.exports = React.createClass({
 			userClicked.fetch({
 				query: { username: event.target.innerHTML },
 				success: function success(data) {
-					console.log("called", data.models[0].attributes.developerLinks);
 					if (data.models[0].attributes.portfolioUrl) {
 						that.setState({ pdfFile: data.models[0].attributes.portfolioUrl });
 					} else {
@@ -35776,12 +35763,18 @@ module.exports = React.createClass({
 		var that = this;
 		var applicant = event.target.parentNode.childNodes[0].innerHTML;
 		var rating = event.target.value;
-		console.log(applicant, "'s rating is", rating);
 		var applicantRated = new UserCollection();
 		applicantRated.fetch({
 			query: { username: applicant },
 			success: function success(data) {
 				var hasBeenRated = new RelationCollection();
+				console.log(data);
+				console.log("before", rating);
+				if (data.models[0].get("designerType") === "Web Designer" || data.models[0].get("designerType") === "Graphic Designer") {
+					var weighted = parseInt(rating) + 0.125;
+					rating = String(weighted);
+				}
+				console.log("after", rating);
 				var relation = new Relation({
 					ApplicantId: data.models[0].id,
 					username: applicant,
@@ -35865,33 +35858,47 @@ Parse.initialize("S6Y7ni0haUcubEj98BcjWPl3lDPaYlVewgl53Prj", "9MYqzYFPqsuMvKAchW
 var applicants = new Users();
 var nonProfits = new NonProfits();
 var ratings = new Ratings();
+var master = [];
 
 module.exports = React.createClass({
 	displayName: "exports",
 
 	getInitialState: function getInitialState() {
 		return {
-			results: { average: 23 }
+			results: master
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		this.calculateResults();
 	},
 	render: function render() {
+		var toShow = this.state.results.map(function (project) {
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"h3",
+					null,
+					project.orgName
+				),
+				React.createElement(
+					"p",
+					null,
+					project.members.toString()
+				)
+			);
+		});
 		return React.createElement(
 			"div",
 			null,
-			React.createElement(
-				"h2",
-				null,
-				this.state.results.average
-			)
+			toShow
 		);
 	},
 	calculateResults: function calculateResults() {
 		console.log("do i work?");
+		var that = this;
 		async.parallel([function (callback) {
-			Parse.Cloud.run("storeUserRating", null, {
+			Parse.Cloud.run("storeUserRating", {}, {
 				success: function success(data) {
 					callback(null, data);
 				},
@@ -35925,67 +35932,112 @@ module.exports = React.createClass({
 			var theApplicants = results[1];
 			var theNonProfits = results[2];
 
+			console.log(theRatings);
+
 			for (var name in theRatings) {
 				var model = theApplicants.findWhere({ username: name });
 				model.set("skillRating", theRatings[name]);
 			}
 
-			var master = [];
 			var sortedApplicants = theApplicants.sortBy(function (model) {
 				return -1 * model.get("skillRating");
 			});
 
+			console.log(sortedApplicants);
+
 			var limit = Math.floor((sortedApplicants.length - 10) / theNonProfits.models.length);
-			var acceptedNonProfits = _.first(theNonProfits.models, limit);
+			var acceptedNonProfits = theNonProfits.models;
 			var acceptedApplicants = _.first(sortedApplicants, sortedApplicants.length - 10);
 
-			console.log("applicants:", acceptedApplicants, "non-profits:", acceptedNonProfits);
+			var difference = _.difference(sortedApplicants, acceptedApplicants);
+			console.log(difference);
+			difference.map(function (model) {
+				console.log(model.get("name"), "who does", model.get("designerType"));
+			});
+			//console.log("applicants:",acceptedApplicants, "non-profits:",acceptedNonProfits);
 
 			acceptedNonProfits.map(function (model) {
 				var name = model.get("orgName");
 				var type = model.get("nonProfitType");
-				master.push({ orgName: name, type: type, members: [] });
+				if (type === "Web") {
+					master.push({ orgName: name, type: type, hasDeveloper: false, members: [] });
+				} else {
+					master.push({ orgName: name, type: type, members: [] });
+				}
 			});
 
-			var hasDeveloper = false;
-
+			var didntMakeIt = [];
 			_.each(acceptedApplicants, function (applicant, index) {
+				var finished = false;
 				for (var i = 0; i < master.length; i++) {
 					switch (master[i].type) {
 						case "Branding":
-							if (master[i].members.length <= 3) {
+							if (master[i].members.length < 3) {
 								if (applicant.get("designerType") === "Graphic Designer") {
-									master.members.push(applicant.get("name"));
+									master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+									finished = true;
+									break;
+								} else {
+									didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
 								}
 							}
+
 						case "Event Collateral":
 							if (master[i].members.length < 3) {
 								if (applicant.get("designerType") === "Graphic Designer") {
-									master[i].members.push(applicant.get("name"));
+									master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+									finished = true;
+								} else {
+									didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
 								}
 							}
 							break;
 						case "Web":
-							if (applicant.get("designerType") === "Web Designer" || applicant.get("designerType") === "Developer") {
-								if (master[i].members.length <= 3) {
-									master[i].members.push(applicant.get("name"));
+							if (applicant.get("designerType") === "Web Designer") {
+								var counter = 0;
+								master[i].members.map(function (memberList) {
+									var stringToCheck = memberList.split("W");
+									if (stringToCheck[1] === "eb Designer") {
+										counter++;
+									}
+								});
+								if (master[i].members.length < 4 && counter !== 3) {
+									master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+									finished = true;
+								} else {
+									didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
 								}
-								if (!hasDeveloper && acceptedApplicants[i].get("designerType") === "Developer" && master[i].members.length < 4) {
-									master[i].members.push(applicant.get("name"));
-									hasDeveloper = true;
-								}
+							} else if (!master[i].hasDeveloper && applicant.get("designerType") === "Developer" && master[i].members.length < 4) {
+								master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+								master[i].hasDeveloper = true;
+								finished = true;
+							} else {
+								didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
 							}
 							break;
 						case "Interior Design":
-							if (master[i].members.length < 4) {
-								master[i].members.push(applicant.get("name"));
+							if (applicant.get("designerType") === "Interior Designer") {
+								if (master[i].members.length < 4) {
+									master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+									finished = true;
+								} else {
+									didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
+								}
 							}
 							break;
 						case "Architecture":
-							if (master[i].members.length < 4) {
-								master[i].members.push(applicant.get("name"));
+							if (applicant.get("designerType") === "Architect") {
+								if (master[i].members.length < 4) {
+									master[i].members.push(applicant.get("name") + " " + applicant.get("designerType"));
+									finished = true;
+								} else {
+									didntMakeIt.push(applicant.get("name") + " " + applicant.get("designerType"));
+								}
 							}
 							break;
+					}
+					if (finished) {
+						break;
 					}
 				}
 			});
@@ -36017,7 +36069,9 @@ module.exports = React.createClass({
 			// 		}
 			// 	}
 			// }
-			console.log(master);
+			//console.log(master);
+			//console.log(didntMakeIt);
+			that.setState({ results: master });
 		});
 	}
 });
