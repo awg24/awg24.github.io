@@ -299,8 +299,10 @@ select {
 	height: 150px;
 }
 body {
-	background: #EFEFEF;
-	color: #666666; 
+	background: #EFEFEF url(../assets/bg-image.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white; 
 }
 .set-gray {
 	color: #666666;
@@ -343,53 +345,20 @@ input[type="radio"]:checked + label span{
 .set-border-color {
 	border-color: white;
 }
-@media(max-width:500px){
-	.small-img {
-		height: 70px;
-		width: 45px;
-		margin-bottom: 10px;
-		margin-top: 10px;
-	}
-	.set-div-width {
-		font-size: 28px;
-	}
-}
-@media(min-width:500px){
-	.set-div-width {
-		margin-left: auto;
-		margin-right: auto;
+@media(max-width: 856px){ 
+	#banner {
+		background: #EFEFEF url(../assets/bg-image.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
 		color: #666666;
-		font-size: 28px;
 	}
-
-}
-@media(max-width:1010px){
-	
-	/*#banner {
-		color: white;
-		font-family: 'Raleway', sans-serif;
-		line-height: 1.6;
+	body {
+		background: #EFEFEF;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: #666666;
 	}
-	input[type="radio"] + label span {
-		background-color:transparent;
-		border: 2px solid #666666;
-	}
-	input[type="radio"]:checked + label span{
-		background-color: #666666;
-		border: 2px solid #666666;
-	}*/
-}
-@media(max-width:1010px){
 	a {
 		color: #666666;
 	}
 }
-@media(min-width:991px){
-	.add-padding {
-		padding:20px;
-	}
-}
-@media(max-width:595px){
-
-}
-

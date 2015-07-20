@@ -34926,6 +34926,13 @@ module.exports = React.createClass({
 			appType: designer
 		};
 	},
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	render: function render() {
 		var user = this.props.loggedInUser.attributes;
 
@@ -35180,6 +35187,10 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	render: function render() {
+		document.getElementById("banner").style.background = "#EFEFEF url(../assets/bg-image.jpg)";
+		document.getElementById("banner").style.backgroundRepeat = "no-repeat";
+		document.getElementById("banner").style.backgroundSize = "cover";
+		document.getElementById("banner").style.color = "white";
 		return React.createElement(
 			"div",
 			null,
@@ -35529,6 +35540,13 @@ module.exports = React.createClass({
 			React.createElement("br", null)
 		);
 	},
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	submitNonProfitApp: function submitNonProfitApp() {
 		var that = this;
 		var orgName = this.refs.orgName.getDOMNode().value;
@@ -35611,6 +35629,13 @@ module.exports = React.createClass({
 				pdfFile: userCollection.at(0).get("portfolioUrl") || userCollection.at(0).get("developerLinks"),
 				ratings: exisitingRelations });
 		});
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
 	},
 	getInitialState: function getInitialState() {
 		return {
@@ -36274,18 +36299,10 @@ var App = Backbone.Router.extend({
 		"success": "submitSuccess"
 	},
 	login: function login() {
-		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)";
-		document.body.style.backgroundRepeat = "no-repeat";
-		document.body.style.backgroundSize = "cover";
-		document.body.style.color = "white";
 		React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 		React.render(React.createElement(LoginPortal, { loggingIn: user, routing: this }), containerEl);
 	},
 	signUp: function signUp() {
-		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)";
-		document.body.style.backgroundRepeat = "no-repeat";
-		document.body.style.backgroundSize = "cover";
-		document.body.style.color = "white";
 		React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 		React.render(React.createElement(SignUpPortal, { routing: this, user: user }), containerEl);
 	},
@@ -36327,8 +36344,11 @@ var App = Backbone.Router.extend({
 				that.navigate("", { trigger: true });
 			},
 			success: function success(model) {
-				document.body.style.background = "#EFEFEF";
-				document.body.style.color = "#666666";
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF";
+					document.body.style.color = "#666666";
+				}
+
 				React.render(React.createElement(AppBanner, { loggedInUser: user, routing: that }), document.getElementById("banner"));
 				if (type === "non-profit" && user.attributes.userType === type) {
 					React.render(React.createElement(NonProfitApp, { userType: type, loggedInUser: user, routing: that }), containerEl);

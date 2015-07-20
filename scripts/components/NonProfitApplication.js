@@ -100,6 +100,13 @@ module.exports = React.createClass({
 			</div>
 		);
 	},
+	componentWillUnmount: function(){
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)"
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	submitNonProfitApp: function(){
 		var that = this;
 		var orgName = this.refs.orgName.getDOMNode().value;
