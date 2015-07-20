@@ -61,7 +61,9 @@ module.exports = React.createClass({
 				}
 				return (
 					<div onClick={that.showPDF} key={models.cid}>
-						<label className="padding-top">{models.attributes.username}</label>
+						<div className="inline hover-this label-width">
+							<label className="padding-top hover-this-label">{models.attributes.username}</label>
+						</div>
 						<select onChange={that.rate} ref="rating" defaultValue={rating} className="selecting small-width pull-right">
 							<option value="">Unrated</option>
 							<option value="5">5</option>
@@ -84,25 +86,27 @@ module.exports = React.createClass({
 					</div>
 					{toShow}
 				</div>
-				<div className="col-sm-2"></div>
+				<div className="col-sm-1"></div>
 				<div className="col-sm-6">
 					<PDF key="2" url={this.state.pdfFile}/>
 				</div>
-				<button onClick={this.goToAveraging} className="btn-blue">SUBMIT</button>
+				<div className="container container-clear">
+					<button onClick={this.goToAveraging} className="btn-blue center-block bottom-margin">SEE TEAMS</button>
+				</div>
 			</div>
 		);
 	},
 	showPDF: function(event){
+		var userToGet = event.target.childNodes[0].innerHTML || event.target.innerHTML;
 		if(!event.target.type){
 			var that = this;
 			var userClicked = new UserCollection();
 			userClicked.fetch({
-				query: {username: event.target.innerHTML},
+				query: {username: userToGet},
 				success: function(data){
-					if(data.models[0].attributes.portfolioUrl){
-						that.setState({pdfFile: data.models[0].attributes.portfolioUrl});
-					} else {
-						that.setState({pdfFile: data.models[0].attributes.developerLinks});
+					if(data.models.length !== 0){
+						console.log(data.models[0].attributes.developerLinks);
+						that.setState({pdfFile: data.models[0].attributes.portfolioUrl || data.models[0].attributes.developerLinks});
 					}
 				}
 			});

@@ -27,14 +27,14 @@ module.exports = React.createClass({
 			var members = project.members.map(function(member){
 				if(member !== ""){
 					keyCounter++;
-					return <p key={"member "+keyCounter}>{member}</p>
+					return <li key={"member "+keyCounter}>{member}</li>
 				}
 			});
 			return (
 				<div key={"well "+keyCounter} className="text-left">
 					<div className="well center-block col-sm-5 add-more-height">
-						<h3>Team {" "+project.orgName}</h3>
-						<p>{members}</p>
+						<h3 className="bottom-border">Team {" "+project.orgName}</h3>
+						<ul><h4>{members}</h4></ul>
 					</div>
 				</div>
 			);

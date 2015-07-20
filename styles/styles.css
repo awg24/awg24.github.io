@@ -1,6 +1,6 @@
 iframe {
-	width: 700px;
-	height: 500px;
+	width: 800px;
+	height: 475px;
 }
 label {
 	text-decoration: none;
@@ -18,6 +18,9 @@ label {
 .inline {
 	display: inline-block;
 }
+.container-clear {
+	clear: both;
+}
 .side-margin {
 	margin-right: 100px;
 }
@@ -25,8 +28,16 @@ label {
 	background: white;
 	border: 1px solid #666666;
 }
+.hover-this:hover {
+	background: #28a9e1;
+	color: white;
+	cursor: pointer;
+}
+.hover-this-label:hover {
+	cursor: pointer;
+}
 .make-scroll {
-	height:  500px;
+	height:  475px;
 	overflow: scroll;
 }
 .bottom-border {
@@ -87,6 +98,14 @@ input[type="radio"] + label span {
     -moz-border-radius:  50%;
     border-radius:  50%;
 }
+input[type="radio"] + label span #signUpRadio {
+    display:inline-block;
+    width:17px;
+    height:17px;
+    cursor:pointer;
+    -moz-border-radius:  50%;
+    border-radius:  50%;
+}
 input {
 	color: black;
 	font-size:16px;
@@ -98,6 +117,10 @@ input[type="radio"] + label span {
 	background-color:transparent;
 	border: 2px solid;
 }
+input[type="radio"] + label span #signUpRadio {
+	background-color:transparent;
+	border: 2px solid;
+}
 .change-label {
 	margin-bottom: -3px;
 }
@@ -106,6 +129,11 @@ input[type="radio"]:checked + label span{
 	/*background-color: white;*/
 	border: 2px solid;
 }
+input[type="radio"]:checked + label span #signUpRadio {
+	/*background-color: white;*/
+	border: 2px solid;
+}
+
 .add-top-margin {
 	margin-top: 40px;
 }
@@ -126,6 +154,7 @@ input[type="radio"]:checked + label span{
 }
 .well {
 	margin:47px;
+	background: white;
 }
 .half-height {
 	height: 300px;
@@ -250,6 +279,12 @@ a:hover{
 	width:300px;
 	margin-bottom: 15px;
 }
+.label-width {
+	width: 175px;
+}
+.make-inline {
+	display: inline-block;
+}
 select {
   	font-family: 'Roboto Slab', serif;
 	height: 35px;
@@ -301,6 +336,9 @@ body {
 input[type="radio"]:checked + label span{
 	background-color: #666666;
 	border: 2px solid;
+}
+.turn-white {
+	background-color: white;
 }
 .set-border-color {
 	border-color: white;

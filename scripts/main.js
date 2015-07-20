@@ -84,7 +84,6 @@ var App = Backbone.Router.extend({
 				document.body.style.background = "#EFEFEF"
 				document.body.style.color = "#666666"
 				React.render(<AppBanner loggedInUser={user} routing={that}/>, document.getElementById("banner"));
-				console.log(user);
 				if(type === "non-profit" && user.attributes.userType === type){
 					React.render(<NonProfitApp userType={type} loggedInUser={user} routing={that} />, containerEl);
 				} else if(type === "applicant" && user.attributes.userType === type){

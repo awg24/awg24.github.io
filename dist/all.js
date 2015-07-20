@@ -35633,9 +35633,13 @@ module.exports = React.createClass({
 					"div",
 					{ onClick: that.showPDF, key: models.cid },
 					React.createElement(
-						"label",
-						{ className: "padding-top" },
-						models.attributes.username
+						"div",
+						{ className: "inline hover-this label-width" },
+						React.createElement(
+							"label",
+							{ className: "padding-top hover-this-label" },
+							models.attributes.username
+						)
 					),
 					React.createElement(
 						"select",
@@ -35703,30 +35707,34 @@ module.exports = React.createClass({
 				),
 				toShow
 			),
-			React.createElement("div", { className: "col-sm-2" }),
+			React.createElement("div", { className: "col-sm-1" }),
 			React.createElement(
 				"div",
 				{ className: "col-sm-6" },
 				React.createElement(PDF, { key: "2", url: this.state.pdfFile })
 			),
 			React.createElement(
-				"button",
-				{ onClick: this.goToAveraging, className: "btn-blue" },
-				"SUBMIT"
+				"div",
+				{ className: "container container-clear" },
+				React.createElement(
+					"button",
+					{ onClick: this.goToAveraging, className: "btn-blue center-block bottom-margin" },
+					"SEE TEAMS"
+				)
 			)
 		);
 	},
 	showPDF: function showPDF(event) {
+		var userToGet = event.target.childNodes[0].innerHTML || event.target.innerHTML;
 		if (!event.target.type) {
 			var that = this;
 			var userClicked = new UserCollection();
 			userClicked.fetch({
-				query: { username: event.target.innerHTML },
+				query: { username: userToGet },
 				success: function success(data) {
-					if (data.models[0].attributes.portfolioUrl) {
-						that.setState({ pdfFile: data.models[0].attributes.portfolioUrl });
-					} else {
-						that.setState({ pdfFile: data.models[0].attributes.developerLinks });
+					if (data.models.length !== 0) {
+						console.log(data.models[0].attributes.developerLinks);
+						that.setState({ pdfFile: data.models[0].attributes.portfolioUrl || data.models[0].attributes.developerLinks });
 					}
 				}
 			});
@@ -35848,7 +35856,7 @@ module.exports = React.createClass({
 				if (member !== "") {
 					keyCounter++;
 					return React.createElement(
-						"p",
+						"li",
 						{ key: "member " + keyCounter },
 						member
 					);
@@ -35862,14 +35870,18 @@ module.exports = React.createClass({
 					{ className: "well center-block col-sm-5 add-more-height" },
 					React.createElement(
 						"h3",
-						null,
+						{ className: "bottom-border" },
 						"Team ",
 						" " + project.orgName
 					),
 					React.createElement(
-						"p",
+						"ul",
 						null,
-						members
+						React.createElement(
+							"h4",
+							null,
+							members
+						)
 					)
 				)
 			);
@@ -36029,6 +36041,16 @@ var bannerEl = document.getElementById("banner");
 module.exports = React.createClass({
 	displayName: "exports",
 
+	componentDidMount: function componentDidMount() {
+		$("#radio12").click(function () {
+			$("#input1").css("background-color", "white");
+			$("#input2").css("background-color", "transparent");
+		});
+		$("#radio213").click(function () {
+			$("#input2").css("background-color", "white");
+			$("#input1").css("background-color", "transparent");
+		});
+	},
 	getInitialState: function getInitialState() {
 		return {
 			errors: {}
@@ -36091,7 +36113,7 @@ module.exports = React.createClass({
 						React.createElement(
 							"label",
 							{ htmlFor: "radio12" },
-							React.createElement("span", { id: "radio12", className: "set-border-color change-label" })
+							React.createElement("span", { id: "input1", className: "set-border-color change-label" })
 						),
 						React.createElement(
 							"span",
@@ -36099,11 +36121,11 @@ module.exports = React.createClass({
 							"Applicant"
 						),
 						React.createElement("br", null),
-						React.createElement("input", { id: "radio21", name: "user-type", value: "non-profit", type: "radio" }),
+						React.createElement("input", { id: "radio213", name: "user-type", value: "non-profit", type: "radio" }),
 						React.createElement(
 							"label",
-							{ htmlFor: "radio21" },
-							React.createElement("span", { id: "radio21", className: "change-label" })
+							{ htmlFor: "radio213" },
+							React.createElement("span", { id: "input2", className: "change-label" })
 						),
 						React.createElement(
 							"span",
@@ -36308,7 +36330,6 @@ var App = Backbone.Router.extend({
 				document.body.style.background = "#EFEFEF";
 				document.body.style.color = "#666666";
 				React.render(React.createElement(AppBanner, { loggedInUser: user, routing: that }), document.getElementById("banner"));
-				console.log(user);
 				if (type === "non-profit" && user.attributes.userType === type) {
 					React.render(React.createElement(NonProfitApp, { userType: type, loggedInUser: user, routing: that }), containerEl);
 				} else if (type === "applicant" && user.attributes.userType === type) {

@@ -4,6 +4,16 @@ var Banner = require("./BannerComponent");
 var bannerEl = document.getElementById("banner");
 
 module.exports = React.createClass({
+	componentDidMount: function(){
+		$("#radio12").click(function(){
+			$("#input1").css("background-color", "white");
+			$("#input2").css("background-color", "transparent");
+		});
+		$("#radio213").click(function(){
+			$("#input2").css("background-color", "white");
+			$("#input1").css("background-color", "transparent");
+		});
+	},
 	getInitialState: function(){
 		return {
 			errors: {}
@@ -27,9 +37,9 @@ module.exports = React.createClass({
 							<input className="input-style" ref="confirmPassword" type="password" placeholder="Confirm Password" />
 							<div className="errors">{this.state.errors.confirm}</div>
 							<div className="center-block text-left sizing">
-								<input id="radio12" name="user-type" value="applicant" type="radio"/><label htmlFor="radio12"><span id="radio12" className="set-border-color change-label">
+								<input id="radio12" name="user-type" value="applicant" type="radio"/><label htmlFor="radio12"><span id="input1" className="set-border-color change-label">
 								</span></label><span>Applicant</span><br/>
-								<input id="radio21" name="user-type" value="non-profit" type="radio"/><label htmlFor="radio21"><span id="radio21" className="change-label">
+								<input id="radio213" name="user-type" value="non-profit" type="radio"/><label htmlFor="radio213"><span id="input2" className="change-label">
 								</span></label><span>Non-Profit</span><br/>
 							</div>
 							<span className="errors">{this.state.errors.userType}</span>
