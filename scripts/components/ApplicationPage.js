@@ -23,6 +23,13 @@ module.exports = React.createClass({
 			appType: designer
 		};
 	},
+	componentWillUnmount: function(){
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)"
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	render: function(){
 		var user  = this.props.loggedInUser.attributes;
 

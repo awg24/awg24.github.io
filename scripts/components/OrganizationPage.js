@@ -42,6 +42,13 @@ module.exports = React.createClass({
 						ratings: exisitingRelations})
 		});
 	},
+	componentWillUnmount: function(){
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)"
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	getInitialState: function(){
 		return {
 			applicants: userCollection,

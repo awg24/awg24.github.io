@@ -28,10 +28,6 @@ var App = Backbone.Router.extend({
 		"success":"submitSuccess"
 	},
 	login: function(){
-		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
-		document.body.style.backgroundRepeat = "no-repeat";
-		document.body.style.backgroundSize = "cover";
-		document.body.style.color = "white";
 		React.render(<Banner loggedInUser={user} routing={myRoutes} />, bannerEl);
 		React.render(<LoginPortal loggingIn={user} routing={this} />, containerEl);
 	},
@@ -77,8 +73,11 @@ var App = Backbone.Router.extend({
 				that.navigate("", {trigger: true});
 			},
 			success: function(model){
-				document.body.style.background = "#EFEFEF"
-				document.body.style.color = "#666666"
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF"
+					document.body.style.color = "#666666"
+				}
+			
 				React.render(<AppBanner loggedInUser={user} routing={that}/>, document.getElementById("banner"));
 				if(type === "non-profit" && user.attributes.userType === type){
 					React.render(<NonProfitApp userType={type} loggedInUser={user} routing={that} />, containerEl);

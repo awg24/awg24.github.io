@@ -299,8 +299,10 @@ select {
 	height: 150px;
 }
 body {
-	background: #EFEFEF;
-	color: #666666; 
+	background: #EFEFEF url(../assets/bg-image.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white; 
 }
 .set-gray {
 	color: #666666;
@@ -343,11 +345,16 @@ input[type="radio"]:checked + label span{
 .set-border-color {
 	border-color: white;
 }
+<<<<<<< HEAD
 @media (min-width: 500px){
+=======
+@media(max-width: 856px){ 
+>>>>>>> old-commit
 	#banner {
 		background: #EFEFEF url(../assets/bg-image.jpg);
 		background-repeat: no-repeat;
 		background-size: cover;
+<<<<<<< HEAD
 		color: white;
 	}
 	#container {
@@ -356,3 +363,17 @@ input[type="radio"]:checked + label span{
 	}
 }
 
+=======
+		color: #666666;
+	}
+	body {
+		background: #EFEFEF;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: #666666;
+	}
+	a {
+		color: #666666;
+	}
+}
+>>>>>>> old-commit

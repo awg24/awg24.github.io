@@ -2,6 +2,10 @@ var React = require("react");
 
 module.exports = React.createClass({
 	render: function(){
+		document.getElementById("banner").style.background = "#EFEFEF url(../assets/bg-image.jpg)"
+		document.getElementById("banner").style.backgroundRepeat = "no-repeat";
+		document.getElementById("banner").style.backgroundSize = "cover";
+		document.getElementById("banner").style.color = "white";
 		return (
 			<div>
 				<div className="container-fluid">
