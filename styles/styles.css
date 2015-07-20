@@ -343,5 +343,16 @@ input[type="radio"]:checked + label span{
 .set-border-color {
 	border-color: white;
 }
-
+@media (min-width: 500px){
+	#banner {
+		background: #EFEFEF url(../assets/bg-image.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: white;
+	}
+	#container {
+		background: #EFEFEF;
+		color: #666666;
+	}
+}
 

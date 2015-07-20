@@ -2,18 +2,6 @@ var React = require("react");
 
 module.exports = React.createClass({
 	render: function(){
-		console.log(document.documentElement.clientWidth)
-		if (document.documentElement.clientWidth <= 500) {
-			document.getElementById("banner").style.background = "#EFEFEF url(../assets/bg-image.jpg)"
-			document.getElementById("banner").style.backgroundRepeat = "no-repeat";
-			document.getElementById("banner").style.backgroundSize = "cover";
-			document.getElementById("container").style.color = "#666666";
-		} else {
-			document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
-			document.body.style.backgroundRepeat = "no-repeat";
-			document.body.style.backgroundSize = "cover";
-			document.body.style.color = "white";
-		}
 		return (
 			<div>
 				<div className="container-fluid">

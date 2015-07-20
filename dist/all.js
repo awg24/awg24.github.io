@@ -35180,18 +35180,6 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	render: function render() {
-		console.log(document.documentElement.clientWidth);
-		if (document.documentElement.clientWidth <= 500) {
-			document.getElementById("banner").style.background = "#EFEFEF url(../assets/bg-image.jpg)";
-			document.getElementById("banner").style.backgroundRepeat = "no-repeat";
-			document.getElementById("banner").style.backgroundSize = "cover";
-			document.getElementById("container").style.color = "#666666";
-		} else {
-			document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)";
-			document.body.style.backgroundRepeat = "no-repeat";
-			document.body.style.backgroundSize = "cover";
-			document.body.style.color = "white";
-		}
 		return React.createElement(
 			"div",
 			null,
@@ -36292,10 +36280,6 @@ var App = Backbone.Router.extend({
 		React.render(React.createElement(LoginPortal, { loggingIn: user, routing: this }), containerEl);
 	},
 	signUp: function signUp() {
-		//document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
-		document.body.style.backgroundRepeat = "no-repeat";
-		document.body.style.backgroundSize = "cover";
-		document.body.style.color = "white";
 		React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 		React.render(React.createElement(SignUpPortal, { routing: this, user: user }), containerEl);
 	},
@@ -36356,7 +36340,7 @@ var App = Backbone.Router.extend({
 
 var myRoutes = new App();
 
-// React.render(<Banner loggedInUser={user} routing={myRoutes} />, bannerEl);
+React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 Backbone.history.start();
 
 },{"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./components/SubmitSuccess":177,"./models/UserModel":180,"backbone":2,"react":162}],179:[function(require,module,exports){
