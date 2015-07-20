@@ -1,7 +1,5 @@
 var React = require("react");
 var $ = require("jquery");
-var Banner = require("./BannerComponent");
-var bannerEl = document.getElementById("banner");
 
 module.exports = React.createClass({
 	componentDidMount: function(){

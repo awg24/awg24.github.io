@@ -36,7 +36,7 @@ var App = Backbone.Router.extend({
 		React.render(<LoginPortal loggingIn={user} routing={this} />, containerEl);
 	},
 	signUp: function(){
-		document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
+		//document.body.style.background = "#EFEFEF url(../assets/bg-image.jpg)"
 		document.body.style.backgroundRepeat = "no-repeat";
 		document.body.style.backgroundSize = "cover";
 		document.body.style.color = "white";
@@ -101,5 +101,5 @@ var App = Backbone.Router.extend({
 
 var myRoutes = new App();
 
-React.render(<Banner loggedInUser={user} routing={myRoutes} />, bannerEl);
+// React.render(<Banner loggedInUser={user} routing={myRoutes} />, bannerEl);
 Backbone.history.start();
