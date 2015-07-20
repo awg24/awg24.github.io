@@ -362,18 +362,3 @@ input[type="radio"]:checked + label span{
 		color: #666666;
 	}
 }
-
-=======
-		color: #666666;
-	}
-	body {
-		background: #EFEFEF;
-		background-repeat: no-repeat;
-		background-size: cover;
-		color: #666666;
-	}
-	a {
-		color: #666666;
-	}
-}
->>>>>>> old-commit

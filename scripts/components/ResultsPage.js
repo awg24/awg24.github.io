@@ -18,7 +18,19 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function(){
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF "
+			document.body.style.color = "#666666";
+			document.body.style.backgroundSize = "cover";
+		}
 		this.calculateResults();
+	},
+	componentWillUnmount: function(){
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)"
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
 	},
 	render: function(){
 		var keyCounter = 0;

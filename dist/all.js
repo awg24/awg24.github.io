@@ -35871,7 +35871,19 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function componentWillMount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF ";
+			document.body.style.color = "#666666";
+			document.body.style.backgroundSize = "cover";
+		}
 		this.calculateResults();
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
 	},
 	render: function render() {
 		var keyCounter = 0;
@@ -36326,6 +36338,10 @@ var App = Backbone.Router.extend({
 				that.navigate("", { trigger: true });
 			},
 			success: function success() {
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF";
+					document.body.style.color = "#666666";
+				}
 				if (user.attributes.userType === "organizer") {
 					React.render(React.createElement(ResultsPage, { routing: that, user: user }), containerEl);
 				} else {

@@ -57,6 +57,10 @@ var App = Backbone.Router.extend({
 				that.navigate("", {trigger: true});
 			},
 			success: function(){
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF"
+					document.body.style.color = "#666666"
+				}
 				if(user.attributes.userType === "organizer"){
 					React.render(<ResultsPage routing={that} user={user} />, containerEl);
 				} else {
