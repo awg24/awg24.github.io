@@ -34933,6 +34933,23 @@ module.exports = React.createClass({
 			document.body.style.backgroundSize = "cover";
 		}
 	},
+	getInitialState: function getInitialState() {
+		var user = this.props.loggedInUser.attributes;
+		var stuVal = false;
+		var pVal = false;
+
+		if (user.userEdu) {
+			if (user.userEdu === "student") {
+				stuVal = true;
+			} else {
+				pVal = true;
+			}
+		}
+		return {
+			studentVal: stuVal,
+			profVal: pVal
+		};
+	},
 	render: function render() {
 		var user = this.props.loggedInUser.attributes;
 
@@ -34947,7 +34964,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "link1", type: "text", placeholder: "Link 1" }),
+				React.createElement("input", { className: "input-style", ref: "link1", type: "text", defaultValue: user.developerLinks, placeholder: "Link 1" }),
 				React.createElement("br", null),
 				React.createElement("input", { className: "input-style", ref: "link2", type: "text", placeholder: "Link 2" }),
 				React.createElement("br", null),
@@ -34968,11 +34985,11 @@ module.exports = React.createClass({
 			React.createElement("br", null),
 			React.createElement("input", { className: "input-style", type: "text", placeholder: "Email", defaultValue: user.email }),
 			React.createElement("br", null),
-			React.createElement("input", { className: "input-style", ref: "phoneNum", type: "text", placeholder: "Phone Number" }),
+			React.createElement("input", { className: "input-style", ref: "phoneNum", type: "text", defaultValue: user.phoneNum, placeholder: "Phone Number" }),
 			React.createElement("br", null),
 			React.createElement(
 				"select",
-				{ ref: "designerType", onChange: this.changeApp, className: "input-style" },
+				{ ref: "designerType", defaultValue: user.designerType, onChange: this.changeApp, className: "input-style" },
 				React.createElement(
 					"option",
 					{ value: "" },
@@ -35007,7 +35024,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "div-top-bottom" },
-				React.createElement("input", { id: "radio1", name: "edu-type", value: "student", type: "radio" }),
+				React.createElement("input", { id: "radio1", name: "edu-type", defaultChecked: this.state.studentVal, value: "student", type: "radio" }),
 				React.createElement(
 					"label",
 					{ htmlFor: "radio1" },
@@ -35018,7 +35035,7 @@ module.exports = React.createClass({
 					null,
 					"Student"
 				),
-				React.createElement("input", { id: "radio2", name: "edu-type", value: "professional", type: "radio" }),
+				React.createElement("input", { id: "radio2", name: "edu-type", defaultChecked: this.state.profVal, value: "professional", type: "radio" }),
 				React.createElement(
 					"label",
 					{ htmlFor: "radio2" },
@@ -35034,14 +35051,14 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				null,
-				React.createElement("textarea", { className: "input-style add-height", ref: "extraSkills", placeholder: "List Additional Skills" })
+				React.createElement("textarea", { className: "input-style add-height", defaultValue: user.additionalSkills, ref: "extraSkills", placeholder: "List Additional Skills" })
 			),
 			React.createElement(
 				"div",
 				null,
 				React.createElement(
 					"select",
-					{ ref: "tshirtSize", className: "input-style" },
+					{ ref: "tshirtSize", defaultValue: user.tshirtSize, className: "input-style" },
 					React.createElement(
 						"option",
 						{ value: "" },
@@ -35070,14 +35087,14 @@ module.exports = React.createClass({
 					React.createElement(
 						"option",
 						null,
-						"xx-large Designer"
+						"xx-large"
 					)
 				)
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("textarea", { className: "input-style add-height", ref: "comments", placeholder: "Comments" })
+				React.createElement("textarea", { className: "input-style add-height", defaultValue: user.additionalComments, ref: "comments", placeholder: "Comments" })
 			),
 			React.createElement(
 				"div",
@@ -35100,19 +35117,14 @@ module.exports = React.createClass({
 	},
 	uploadFile: function uploadFile() {
 		var that = this;
-		console.log(this.props.loggedInUser);
 		var user = this.props.loggedInUser;
 		filepicker.pickAndStore({
 			openTo: "~/Documents/"
 		}, {}, function (Blobs) {
 			console.log("Blobs:", Blobs[0].url);
 			user.save({ portfolioUrl: Blobs[0].url }, {
-				success: function success(res) {
-					console.log(res);
-				},
-				error: function error(err) {
-					console.log(err);
-				}
+				success: function success(res) {},
+				error: function error(err) {}
 			});
 			console.log(that.props.loggedInUser);
 		}, function (error) {
@@ -35122,7 +35134,6 @@ module.exports = React.createClass({
 			console.log("progress:", progress);
 			console.log(JSON.stringify(progress));
 		});
-		//user.save({portfolioUrl: "http:test/ha"});
 	},
 	submitApp: function submitApp() {
 		var that = this;
@@ -35153,8 +35164,6 @@ module.exports = React.createClass({
 			}
 		}
 
-		console.log(designerType, phoneNum, userEdu, extraSkills, extraComments, shirtSize);
-
 		if (links) {
 			this.props.loggedInUser.set("developerLinks", links);
 		}
@@ -35168,11 +35177,10 @@ module.exports = React.createClass({
 			userEdu: userEdu
 		}, {
 			success: function success() {
-				console.log("saved to server");
 				that.props.routing.navigate("success", { trigger: true });
 			},
-			error: function error() {
-				console.log("didnt work yo");
+			error: function error(err) {
+				console.log(err);
 			}
 		});
 	}
@@ -35328,11 +35336,45 @@ module.exports = React.createClass({
 var React = require("react");
 var $ = require("jquery");
 var NonProfitModel = require("../models/NonProfitModel");
+var NonProfitCollection = require("../collections/NonProfitCollection");
 
 module.exports = React.createClass({
 	displayName: "exports",
 
+	getInitialState: function getInitialState() {
+		var nonProf = this.props.nonProf.attributes;
+		var ecVal = false;
+		var wVal = false;
+		var iVal = false;
+		var aVal = false;
+		var bVal = false;
+		switch (nonProf.nonProfitType) {
+			case "Event Collateral":
+				ecVal = true;
+				break;
+			case "Web":
+				wVal = true;
+				break;
+			case "Interior Design":
+				iVal = true;
+				break;
+			case "Architecture":
+				aVal = true;
+				break;
+			case "Branding":
+				bVal = true;
+				break;
+		}
+		return {
+			ecVal: ecVal,
+			wVal: wVal,
+			iVal: iVal,
+			aVal: aVal,
+			bVal: bVal
+		};
+	},
 	render: function render() {
+		var nonProf = this.props.nonProf.attributes;
 		return React.createElement(
 			"div",
 			{ className: "text-center" },
@@ -35344,37 +35386,37 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "orgName", type: "text", placeholder: "Organization Name" })
+				React.createElement("input", { className: "input-style", ref: "orgName", type: "text", defaultValue: nonProf.orgName, placeholder: "Organization Name" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "site", type: "text", placeholder: "Website (if any)" })
+				React.createElement("input", { className: "input-style", ref: "site", type: "text", defaultValue: nonProf.site, placeholder: "Website (if any)" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "contactName", type: "text", placeholder: "Contact Person" })
+				React.createElement("input", { className: "input-style", ref: "contactName", type: "text", defaultValue: nonProf.contactName, placeholder: "Contact Person" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "contactEmail", type: "text", placeholder: "Contact Email" })
+				React.createElement("input", { className: "input-style", ref: "contactEmail", type: "text", defaultValue: nonProf.contactEmail, placeholder: "Contact Email" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("input", { className: "input-style", ref: "contactNum", type: "text", placeholder: "Contact Phone Number" })
+				React.createElement("input", { className: "input-style", ref: "contactNum", type: "text", defaultValue: nonProf.contactNum, placeholder: "Contact Phone Number" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("textarea", { className: "input-style add-height", ref: "missionStatement", placeholder: "Mission Statement" })
+				React.createElement("textarea", { className: "input-style add-height", ref: "missionStatement", defaultValue: nonProf.missionStatement, placeholder: "Mission Statement" })
 			),
 			React.createElement(
 				"div",
 				null,
-				React.createElement("textarea", { className: "input-style add-height", ref: "additionalComments", placeholder: "Addition Comments" })
+				React.createElement("textarea", { className: "input-style add-height", ref: "additionalComments", defaultValue: nonProf.additionalComments, placeholder: "Addition Comments" })
 			),
 			React.createElement(
 				"div",
@@ -35387,7 +35429,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio1", name: "nonProfitType", value: "Event Collateral", type: "radio" }),
+					React.createElement("input", { id: "radio1", name: "nonProfitType", defaultChecked: this.state.ecVal, value: "Event Collateral", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio1" },
@@ -35418,7 +35460,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio2", name: "nonProfitType", value: "Web", type: "radio" }),
+					React.createElement("input", { id: "radio2", name: "nonProfitType", defaultChecked: this.state.wVal, value: "Web", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio2" },
@@ -35450,7 +35492,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio3", name: "nonProfitType", value: "Interior Design", type: "radio" }),
+					React.createElement("input", { id: "radio3", name: "nonProfitType", defaultChecked: this.state.iVal, value: "Interior Design", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio3" },
@@ -35482,7 +35524,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio4", name: "nonProfitType", value: "Branding", type: "radio" }),
+					React.createElement("input", { id: "radio4", name: "nonProfitType", defaultChecked: this.state.bVal, value: "Branding", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio4" },
@@ -35508,7 +35550,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "bottom-border" },
-					React.createElement("input", { id: "radio5", name: "nonProfitType", value: "Architecture", type: "radio" }),
+					React.createElement("input", { id: "radio5", name: "nonProfitType", defaultChecked: this.state.aVal, value: "Architecture", type: "radio" }),
 					React.createElement(
 						"label",
 						{ htmlFor: "radio5" },
@@ -35558,8 +35600,6 @@ module.exports = React.createClass({
 		var additionalComments = this.refs.additionalComments.getDOMNode().value;
 		var nonProfitType = $("input[name=nonProfitType]:checked").val();
 
-		console.log(orgName, site, contactName, contactEmail, contactNum, missionStatement, additionalComments, nonProfitType);
-
 		var nonProfit = new NonProfitModel({
 			orgName: orgName,
 			site: site,
@@ -35571,8 +35611,6 @@ module.exports = React.createClass({
 			nonProfitType: nonProfitType,
 			createdBy: this.props.loggedInUser.id
 		});
-
-		console.log(nonProfit);
 
 		nonProfit.save(null, {
 			success: function success() {
@@ -35586,7 +35624,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/NonProfitModel":179,"jquery":7,"react":162}],173:[function(require,module,exports){
+},{"../collections/NonProfitCollection":164,"../models/NonProfitModel":179,"jquery":7,"react":162}],173:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -36058,8 +36096,15 @@ module.exports = React.createClass({
 				}
 			});
 			var filteredMaster = _.filter(master, function (group) {
-				if (group.members.length !== 0) {
-					return group;
+				console.log(group);
+				if (group.type === "Event Collateral" || group.type === "Branding") {
+					if (group.members.length === 3) {
+						return group;
+					}
+				} else if (group.type === "Web" || group.type === "Architecture" || group.type === "Interior Design") {
+					if (group.members.length === 4) {
+						return group;
+					}
 				}
 			});
 			that.setState({ results: filteredMaster });
@@ -36274,6 +36319,19 @@ module.exports = React.createClass({
 				"Thank you for your submission, we will get back to shortly!"
 			)
 		);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
+	componentWillMount: function componentWillMount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF ";
+			document.body.style.color = "#666666";
+		}
 	}
 });
 
@@ -36296,6 +36354,7 @@ var SuccessPage = require("./components/SubmitSuccess");
 var containerEl = document.getElementById("container");
 var bannerEl = document.getElementById("banner");
 var UserModel = require("./models/UserModel");
+var NonProfitCollection = require("./collections/NonProfitCollection");
 var AppBanner = require("./components/AppBanner");
 var user = new UserModel();
 
@@ -36325,6 +36384,10 @@ var App = Backbone.Router.extend({
 				that.navigate("", { trigger: true });
 			},
 			success: function success() {
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF";
+					document.body.style.color = "#666666";
+				}
 				React.render(React.createElement(SuccessPage, { routing: that, loggedInUser: user }), containerEl);
 			}
 		});
@@ -36365,7 +36428,16 @@ var App = Backbone.Router.extend({
 
 				React.render(React.createElement(AppBanner, { loggedInUser: user, routing: that }), document.getElementById("banner"));
 				if (type === "non-profit" && user.attributes.userType === type) {
-					React.render(React.createElement(NonProfitApp, { userType: type, loggedInUser: user, routing: that }), containerEl);
+					var existingProfit = new NonProfitCollection();
+					existingProfit.fetch({
+						query: { createdBy: user.id },
+						success: function success(data) {
+							React.render(React.createElement(NonProfitApp, { userType: type, nonProf: data.at(0), routing: that }), containerEl);
+						},
+						error: function error(err) {
+							console.log(err);
+						}
+					});
 				} else if (type === "applicant" && user.attributes.userType === type) {
 					React.render(React.createElement(ApplicationPage, { userType: type, loggedInUser: user, routing: that }), containerEl);
 				} else if (user.attributes.userType === "organizer") {
@@ -36383,7 +36455,7 @@ var myRoutes = new App();
 React.render(React.createElement(Banner, { loggedInUser: user, routing: myRoutes }), bannerEl);
 Backbone.history.start();
 
-},{"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./components/SubmitSuccess":177,"./models/UserModel":180,"backbone":2,"react":162}],179:[function(require,module,exports){
+},{"./collections/NonProfitCollection":164,"./components/AppBanner":167,"./components/ApplicationPage":168,"./components/BannerComponent":169,"./components/LoginPortal":170,"./components/NoPremission":171,"./components/NonProfitApplication":172,"./components/OrganizationPage":173,"./components/ResultsPage":175,"./components/SignUpPortal":176,"./components/SubmitSuccess":177,"./models/UserModel":180,"backbone":2,"react":162}],179:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backparse')({

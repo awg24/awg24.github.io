@@ -14,6 +14,7 @@ var SuccessPage = require("./components/SubmitSuccess");
 var containerEl = document.getElementById("container");
 var bannerEl = document.getElementById("banner");
 var UserModel = require("./models/UserModel");
+var NonProfitCollection = require("./collections/NonProfitCollection");
 var AppBanner = require("./components/AppBanner");
 var user = new UserModel(); 
 
@@ -44,6 +45,10 @@ var App = Backbone.Router.extend({
 				that.navigate("", {trigger: true});
 			},
 			success: function(){
+				if (document.documentElement.clientWidth > 856) {
+					document.body.style.background = "#EFEFEF"
+					document.body.style.color = "#666666"
+				}
 				React.render(<SuccessPage routing={that} loggedInUser={user}/>, containerEl);
 			}
 		});
@@ -84,7 +89,17 @@ var App = Backbone.Router.extend({
 			
 				React.render(<AppBanner loggedInUser={user} routing={that}/>, document.getElementById("banner"));
 				if(type === "non-profit" && user.attributes.userType === type){
-					React.render(<NonProfitApp userType={type} loggedInUser={user} routing={that} />, containerEl);
+					var existingProfit = new NonProfitCollection();
+					existingProfit.fetch({
+						query: {createdBy: user.id},
+						success: function(data){
+							React.render(<NonProfitApp userType={type} nonProf={data.at(0)} routing={that} />, containerEl);
+						},
+						error: function(err){
+							console.log(err);
+						}
+					});
+					
 				} else if(type === "applicant" && user.attributes.userType === type){
 					React.render(<ApplicationPage userType={type} loggedInUser={user} routing={that} />, containerEl);
 				} else if(user.attributes.userType === "organizer"){

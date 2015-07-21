@@ -1,41 +1,75 @@
 var React = require("react");
 var $ = require("jquery");
 var NonProfitModel = require("../models/NonProfitModel");
+var NonProfitCollection = require("../collections/NonProfitCollection");
 
 module.exports = React.createClass({
+	getInitialState: function(){
+		var nonProf = this.props.nonProf.attributes;
+		var ecVal = false;
+		var wVal = false;
+		var iVal = false;
+		var aVal = false;
+		var bVal = false;
+		switch(nonProf.nonProfitType){
+			case "Event Collateral":
+				ecVal = true;
+				break;
+			case "Web":
+				wVal = true;
+				break;
+			case "Interior Design":
+				iVal = true;
+				break;
+			case "Architecture":
+				aVal = true;
+				break;
+			case "Branding":
+				bVal = true;
+				break;
+		}
+		return {
+			ecVal: ecVal,
+			wVal: wVal,
+			iVal: iVal,
+			aVal: aVal,
+			bVal: bVal
+		}
+	},
 	render: function(){
+		var nonProf = this.props.nonProf.attributes;
 		return (
 			<div className="text-center">
 				<div className="div-bottom-margin set-div-width">
 					Non Profit Application
 				</div>
 				<div>
-					<input className="input-style" ref="orgName" type="text" placeholder="Organization Name" />
+					<input className="input-style" ref="orgName" type="text" defaultValue={nonProf.orgName} placeholder="Organization Name" />
 				</div>
 				<div>
-					<input className="input-style" ref="site" type="text" placeholder="Website (if any)" />
+					<input className="input-style" ref="site" type="text" defaultValue={nonProf.site} placeholder="Website (if any)" />
 				</div>
 				<div>
-					<input className="input-style" ref="contactName" type="text" placeholder="Contact Person" />
+					<input className="input-style" ref="contactName" type="text" defaultValue={nonProf.contactName} placeholder="Contact Person" />
 				</div>
 				<div>
-					<input className="input-style" ref="contactEmail" type="text" placeholder="Contact Email" />
+					<input className="input-style" ref="contactEmail" type="text" defaultValue={nonProf.contactEmail} placeholder="Contact Email" />
 				</div>
 				<div>
-					<input className="input-style" ref="contactNum" type="text" placeholder="Contact Phone Number" />
+					<input className="input-style" ref="contactNum" type="text" defaultValue={nonProf.contactNum} placeholder="Contact Phone Number" />
 				</div>
 				<div>
-					<textarea className="input-style add-height" ref="missionStatement" placeholder="Mission Statement"></textarea>
+					<textarea className="input-style add-height" ref="missionStatement" defaultValue={nonProf.missionStatement} placeholder="Mission Statement"></textarea>
 				</div>
 				<div>
-					<textarea className="input-style add-height" ref="additionalComments" placeholder="Addition Comments"></textarea>
+					<textarea className="input-style add-height" ref="additionalComments" defaultValue={nonProf.additionalComments} placeholder="Addition Comments"></textarea>
 				</div>
 				<div className="div-width">
 					Please select a package of deliverables that your organization needs
 				</div>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio1" name="nonProfitType" value="Event Collateral" type="radio"/><label htmlFor="radio1"><span className="change-label">
+						<input id="radio1" name="nonProfitType" defaultChecked={this.state.ecVal} value="Event Collateral" type="radio"/><label htmlFor="radio1"><span className="change-label">
 						</span></label><span>Event Collateral</span>
 					</div>
 					<div className="side-padding">
@@ -47,7 +81,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio2" name="nonProfitType" value="Web" type="radio"/><label htmlFor="radio2"><span className="change-label">
+						<input id="radio2" name="nonProfitType" defaultChecked={this.state.wVal} value="Web" type="radio"/><label htmlFor="radio2"><span className="change-label">
 						</span></label><span>Web</span><br/>
 					</div>
 					<div className="side-padding">
@@ -59,7 +93,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio3" name="nonProfitType" value="Interior Design" type="radio"/><label htmlFor="radio3"><span className="change-label">
+						<input id="radio3" name="nonProfitType" defaultChecked={this.state.iVal} value="Interior Design" type="radio"/><label htmlFor="radio3"><span className="change-label">
 						</span></label><span>Interior Design</span><br/>
 					</div>
 					<div className="side-padding">
@@ -71,7 +105,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio4" name="nonProfitType" value="Branding" type="radio"/><label htmlFor="radio4"><span className="change-label">
+						<input id="radio4" name="nonProfitType" defaultChecked={this.state.bVal} value="Branding" type="radio"/><label htmlFor="radio4"><span className="change-label">
 						</span></label><span>Full Branding or Branding Redesign</span><br/>
 						</div>
 					<div className="side-padding">
@@ -83,7 +117,7 @@ module.exports = React.createClass({
 				</div><br/>
 				<div className="text-left give-border div-width">
 					<div className="bottom-border">
-						<input id="radio5" name="nonProfitType" value="Architecture" type="radio"/><label htmlFor="radio5"><span className="change-label">
+						<input id="radio5" name="nonProfitType" defaultChecked={this.state.aVal} value="Architecture" type="radio"/><label htmlFor="radio5"><span className="change-label">
 						</span></label><span>Architecture</span><br/>
 					</div>
 					<div className="side-padding">
@@ -118,8 +152,6 @@ module.exports = React.createClass({
 		var additionalComments = this.refs.additionalComments.getDOMNode().value;
 		var nonProfitType = $("input[name=nonProfitType]:checked").val();
 
-		console.log(orgName, site, contactName, contactEmail, contactNum, missionStatement, additionalComments, nonProfitType);
-
 		var nonProfit = new NonProfitModel({
 			orgName: orgName,
 			site: site,
@@ -131,8 +163,6 @@ module.exports = React.createClass({
 			nonProfitType: nonProfitType,
 			createdBy: this.props.loggedInUser.id
 		});
-
-		console.log(nonProfit);
 
 		nonProfit.save(null, {
 			success: function(){
@@ -147,28 +177,3 @@ module.exports = React.createClass({
 
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -30,6 +30,23 @@ module.exports = React.createClass({
 			document.body.style.backgroundSize = "cover";
 		}
 	},
+	getInitialState: function(){
+		var user  = this.props.loggedInUser.attributes;
+		var stuVal = false;
+		var pVal = false;
+
+		if(user.userEdu){
+			if(user.userEdu === "student"){
+				stuVal = true;
+			} else {
+				pVal = true;
+			}
+		}
+		return {
+			studentVal: stuVal,
+			profVal: pVal
+		}
+	},
 	render: function(){
 		var user  = this.props.loggedInUser.attributes;
 
@@ -39,7 +56,7 @@ module.exports = React.createClass({
 							Developers, please submit at least 1 link that demostrates your work
 						</div>
 						<div>
-							<input className="input-style" ref="link1" type="text" placeholder="Link 1"/><br/>
+							<input className="input-style" ref="link1" type="text" defaultValue={user.developerLinks} placeholder="Link 1"/><br/>
 							<input className="input-style" ref="link2" type="text" placeholder="Link 2"/><br/>
 							<input className="input-style" ref="link3" type="text" placeholder="Link 3"/><br/>
 						</div>
@@ -53,8 +70,8 @@ module.exports = React.createClass({
 				</div>
 				<input className="input-style" type="text" placeholder="Name" defaultValue={user.name}/><br/>
 				<input className="input-style" type="text" placeholder="Email" defaultValue={user.email}/><br/>
-				<input className="input-style" ref="phoneNum" type="text" placeholder="Phone Number"/><br/>
-				<select ref="designerType" onChange={this.changeApp} className="input-style">
+				<input className="input-style" ref="phoneNum" type="text" defaultValue={user.phoneNum} placeholder="Phone Number"/><br/>
+				<select ref="designerType"  defaultValue={user.designerType} onChange={this.changeApp} className="input-style">
 					<option value="" >Select Profession</option>
 					<option>Graphic Designer</option>
 					<option>Web Designer</option>
@@ -63,27 +80,27 @@ module.exports = React.createClass({
 					<option>Interior Designer</option>
 				</select>
 				<div className="div-top-bottom">
-				<input id="radio1" name="edu-type" value="student" type="radio"/><label htmlFor="radio1"><span className="change-label">
+				<input id="radio1" name="edu-type" defaultChecked={this.state.studentVal} value="student" type="radio"/><label htmlFor="radio1"><span className="change-label">
 				</span></label><span>Student</span>
-				<input id="radio2" name="edu-type" value="professional" type="radio"/><label htmlFor="radio2"><span className="change-label">
+				<input id="radio2" name="edu-type" defaultChecked={this.state.profVal} value="professional" type="radio"/><label htmlFor="radio2"><span className="change-label">
 				</span></label><span>Professional</span>
 				</div>
 				{this.state.appType}
 				<div>
-					<textarea className="input-style add-height" ref="extraSkills" placeholder="List Additional Skills"></textarea>
+					<textarea className="input-style add-height" defaultValue={user.additionalSkills} ref="extraSkills" placeholder="List Additional Skills"></textarea>
 				</div>
 				<div>
-					<select ref="tshirtSize" className="input-style">
+					<select ref="tshirtSize" defaultValue={user.tshirtSize} className="input-style">
 						<option value="">Select T-Shirt Size</option>
 						<option>small</option>
 						<option>medium</option>
 						<option>large</option>
 						<option>x-large</option>
-						<option>xx-large Designer</option>
+						<option>xx-large</option>
 					</select>
 				</div>
 				<div>
-					<textarea className="input-style add-height" ref="comments" placeholder="Comments"></textarea>
+					<textarea className="input-style add-height" defaultValue={user.additionalComments} ref="comments" placeholder="Comments"></textarea>
 				</div>
 				<div>
 					<button className="btn-blue" onClick={this.submitApp}>SUBMIT APPLICATION</button>
@@ -101,7 +118,6 @@ module.exports = React.createClass({
 	},
 	uploadFile: function(){
 		var that = this;
-		console.log(this.props.loggedInUser);
 		var user = this.props.loggedInUser;
 		filepicker.pickAndStore({
 			openTo: '~/Documents/'
@@ -110,10 +126,8 @@ module.exports = React.createClass({
 				console.log("Blobs:", Blobs[0].url);
 				user.save({portfolioUrl:Blobs[0].url}, {
 					success: function(res){
-						console.log(res);
 					},
 					error: function(err){
-						console.log(err);
 					}
 				});
 				console.log(that.props.loggedInUser);
@@ -127,7 +141,6 @@ module.exports = React.createClass({
 				console.log(JSON.stringify(progress));
 			}
 		);
-		//user.save({portfolioUrl: "http:test/ha"});
 	},
 	submitApp: function(){
 		var that = this;
@@ -158,8 +171,6 @@ module.exports = React.createClass({
 			}
 		}
 
-		console.log(designerType, phoneNum, userEdu, extraSkills, extraComments, shirtSize);
-
 		if(links){
 			this.props.loggedInUser.set("developerLinks", links);
 		}
@@ -173,30 +184,11 @@ module.exports = React.createClass({
 				userEdu: userEdu
 		},{
 			success: function(){
-				console.log("saved to server");
 				that.props.routing.navigate("success",{trigger: true});
 			},
-			error: function(){
-				console.log("didnt work yo");
-
+			error: function(err){
+				console.log(err)
 			}
 		});
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

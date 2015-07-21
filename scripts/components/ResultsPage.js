@@ -188,9 +188,19 @@ module.exports = React.createClass({
 					}
 				});
 				var filteredMaster = _.filter(master, function(group){
-					if(group.members.length !== 0){
-						return group;
-					}
+					console.log(group);
+					 if(group.type === "Event Collateral" || 
+							  group.type === "Branding" ){
+						if(group.members.length  === 3){
+							return group;
+						}
+					} else if(group.type === "Web" || 
+							  group.type === "Architecture" ||
+							  group.type === "Interior Design" ){
+						if(group.members.length === 4){
+							return group;
+						}
+					} 
 				});
 				that.setState({results:filteredMaster});
 			}
