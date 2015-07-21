@@ -369,3 +369,23 @@ input[type="radio"]:checked + label span{
 		width: 350px;
 	}
 }
+@media(min-width: 856px){ 
+	#banner {
+		background: #EFEFEF;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: white;
+	}
+	body {
+		background: #EFEFEF;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: #666666;
+	}
+	a {
+		color: #666666;
+	}
+	iframe {
+		width: 800px;
+	}
+}
