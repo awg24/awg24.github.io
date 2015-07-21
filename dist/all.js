@@ -35342,7 +35342,12 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	getInitialState: function getInitialState() {
-		var nonProf = this.props.nonProf.attributes;
+		var nonProf;
+		if (this.props.nonProf) {
+			nonProf = this.props.nonProf.attributes;
+		} else {
+			nonProf = {};
+		}
 		var ecVal = false;
 		var wVal = false;
 		var iVal = false;
@@ -35374,7 +35379,12 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-		var nonProf = this.props.nonProf.attributes;
+		var nonProf;
+		if (this.props.nonProf) {
+			nonProf = this.props.nonProf.attributes;
+		} else {
+			nonProf = {};
+		}
 		return React.createElement(
 			"div",
 			{ className: "text-center" },
@@ -36432,7 +36442,8 @@ var App = Backbone.Router.extend({
 					existingProfit.fetch({
 						query: { createdBy: user.id },
 						success: function success(data) {
-							React.render(React.createElement(NonProfitApp, { userType: type, nonProf: data.at(0), routing: that }), containerEl);
+							console.log(data);
+							React.render(React.createElement(NonProfitApp, { userType: type, loggedInUser: user, nonProf: data.at(0), routing: that }), containerEl);
 						},
 						error: function error(err) {
 							console.log(err);

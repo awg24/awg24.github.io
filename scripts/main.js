@@ -93,7 +93,8 @@ var App = Backbone.Router.extend({
 					existingProfit.fetch({
 						query: {createdBy: user.id},
 						success: function(data){
-							React.render(<NonProfitApp userType={type} nonProf={data.at(0)} routing={that} />, containerEl);
+							console.log(data);
+							React.render(<NonProfitApp userType={type} loggedInUser={user} nonProf={data.at(0)} routing={that} />, containerEl);
 						},
 						error: function(err){
 							console.log(err);

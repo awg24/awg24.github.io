@@ -5,7 +5,12 @@ var NonProfitCollection = require("../collections/NonProfitCollection");
 
 module.exports = React.createClass({
 	getInitialState: function(){
-		var nonProf = this.props.nonProf.attributes;
+		var nonProf;
+		if(this.props.nonProf){
+			nonProf = this.props.nonProf.attributes;
+		} else {
+			nonProf = {};
+		}
 		var ecVal = false;
 		var wVal = false;
 		var iVal = false;
@@ -37,7 +42,12 @@ module.exports = React.createClass({
 		}
 	},
 	render: function(){
-		var nonProf = this.props.nonProf.attributes;
+		var nonProf;
+		if(this.props.nonProf){
+			nonProf = this.props.nonProf.attributes;
+		} else {
+			nonProf = {};
+		}
 		return (
 			<div className="text-center">
 				<div className="div-bottom-margin set-div-width">
