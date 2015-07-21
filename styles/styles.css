@@ -1,3 +1,6 @@
+@-ms-viewport{
+ width: device-width;
+}
 iframe {
 	width: 800px;
 	height: 475px;
