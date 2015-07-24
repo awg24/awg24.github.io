@@ -34903,7 +34903,17 @@ var developer;
 module.exports = React.createClass({
 	displayName: "exports",
 
+	componentWillUnmount: function componentWillUnmount() {
+		if (document.documentElement.clientWidth > 856) {
+			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
+			document.body.style.color = "white";
+			document.body.style.backgroundSize = "cover";
+		}
+	},
 	getInitialState: function getInitialState() {
+		var user = this.props.loggedInUser.attributes;
+		var stuVal = false;
+		var pVal = false;
 		designer = React.createElement(
 			"div",
 			null,
@@ -34922,21 +34932,6 @@ module.exports = React.createClass({
 				)
 			)
 		);
-		return {
-			appType: designer
-		};
-	},
-	componentWillUnmount: function componentWillUnmount() {
-		if (document.documentElement.clientWidth > 856) {
-			document.body.style.background = "#EFEFEF url(../../assets/bg-image.jpg)";
-			document.body.style.color = "white";
-			document.body.style.backgroundSize = "cover";
-		}
-	},
-	getInitialState: function getInitialState() {
-		var user = this.props.loggedInUser.attributes;
-		var stuVal = false;
-		var pVal = false;
 
 		if (user.userEdu) {
 			if (user.userEdu === "student") {
@@ -34947,7 +34942,8 @@ module.exports = React.createClass({
 		}
 		return {
 			studentVal: stuVal,
-			profVal: pVal
+			profVal: pVal,
+			appType: designer
 		};
 	},
 	render: function render() {
@@ -35984,6 +35980,7 @@ module.exports = React.createClass({
 	},
 	calculateResults: function calculateResults() {
 		var that = this;
+		//master = [];
 		async.parallel([function (callback) {
 			Parse.Cloud.run("storeUserRating", {}, {
 				success: function success(data) {

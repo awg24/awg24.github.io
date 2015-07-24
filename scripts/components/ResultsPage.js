@@ -61,6 +61,7 @@ module.exports = React.createClass({
 	},
 	calculateResults: function(){
 		var that = this;
+		//master = [];
 		async.parallel([
 			function(callback){
 				Parse.Cloud.run("storeUserRating",{}, {
