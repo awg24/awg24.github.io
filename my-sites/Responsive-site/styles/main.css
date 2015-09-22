@@ -1,0 +1,62 @@
+.navbar {
+  background: white;
+  padding: 5px; }
+
+.navbar a {
+  font-size: 25px; }
+
+.navbar .navbar-brand span {
+  color: blue; }
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white; }
+
+.navbar-toggle {
+  background: blue; }
+
+.dropdown button {
+  margin-top: 10px; }
+
+.target-links li a {
+  font-size: 16px;
+  margin-right: 35px; }
+
+.hero-img {
+  padding: 100px 0px;
+  margin-top: -20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../images/hero-image.jpg");
+  color: white;
+  font-size: 22px;
+  overflow: hidden; }
+
+.hero-img span {
+  font-size: 50px; }
+
+main {
+  padding: 15px; }
+
+.bottom-border {
+  border-bottom: 1px solid black;
+  margin-bottom: 20px; }
+
+.top-margin {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.padding {
+  padding: 15px; }
+
+links li a {
+  color: #99A1AC; }
+
+footer {
+  overflow: hidden;
+  background: #3A414B;
+  color: #99A1AC;
+  padding: 15px; }
+
+@media (min-width: 992px) {
+  .expand button {
+    width: 300px; } }

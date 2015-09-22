@@ -1,0 +1,109 @@
+@-ms-viewport{
+ width: device-width;
+}
+div textarea {
+	max-width: 420px;
+}
+h1, h3{
+	color: white;
+}
+form label {
+	color: white;
+}
+.shape {
+	margin-top: 225px;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.change-line {
+	line-height: 20px;
+}
+.change-margin {
+	margin-left: 5px;
+}
+.change-margin-span {
+	margin-left: 6px;
+}
+.small-block {
+	width: 155px;
+	margin-bottom: 15px;
+}
+.in-line {
+	display: inline-block;
+	width:10px;
+}
+.add-bottom-margin {
+	margin-bottom: 15px;
+}
+.small-margin {
+	margin-left: 2px;
+}
+.error {
+	color: red;
+}
+.success {
+	color: green;
+}
+.blog-card {
+	width: 600px;
+	background: white;
+	padding: 15px;
+	box-shadow: 1px 1px 3px #757575;
+	margin-bottom: 15px;
+}
+.small-width {
+	width: 450px;
+}
+button {
+	font-weight: bold;
+}
+body {
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	font-family: 'Raleway', sans-serif;
+}
+input::-webkit-input-placeholder {
+   color: white;
+}
+.content-box {
+	border: 1px solid #eeeeee;
+}
+.padit {
+	padding: 10px;
+}
+.shift-down {
+	margin-top: 150px;
+}
+.shift-more-down {
+	margin-top: 225px;
+}
+.style-input {
+	width: 400px;
+	padding: 20px;
+	padding-top: 10px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+.style-input2 {
+	width: 300px;
+	padding: 10px;
+	padding-top: 10px;
+	background: rgba(250,250,250,0);
+	border: none;
+	font-size: 18px;
+	color: white;
+	border-bottom: 2px solid white;
+}
+.space {
+	margin-right: 15px;
+	margin-top: 15px;
+}
+.overflow {
+	overflow: hidden;
+}
+@media(max-width: 615px){
+	.blog-card {
+		width: 300px;
+	}
+}
