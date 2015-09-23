@@ -35584,7 +35584,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"a",
 					{ className: "right", href: "https://github.com/awg24" },
-					React.createElement("img", { className: "some-margin", src: "../../images/Github-Mark-Light-32px.png" })
+					React.createElement("img", { className: "some-margin", src: "../../images/GitHub-Mark-Light-32px.png" })
 				)
 			)
 		);
