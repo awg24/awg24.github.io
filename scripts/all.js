@@ -35676,33 +35676,118 @@ module.exports = React.createClass({
 				React.createElement(
 					"h3",
 					null,
-					"My Work"
+					"Some Samples for Viewing"
 				),
 				React.createElement(
-					"span",
-					null,
+					"div",
+					{ className: "row" },
 					React.createElement(
-						"a",
-						{ href: "../../my-sites/Responsive-site/index.html" },
-						" work!"
-					)
-				),
-				React.createElement(
-					"span",
-					null,
+						"div",
+						{ className: "col s12 m6 l4" },
+						React.createElement(
+							"div",
+							{ className: "card medium" },
+							React.createElement(
+								"div",
+								{ className: "card-image" },
+								React.createElement("img", { src: "../../images/rs.png" })
+							),
+							React.createElement(
+								"div",
+								{ className: "card-content" },
+								React.createElement(
+									"span",
+									{ className: "card-title" },
+									"Responsive Site"
+								),
+								React.createElement(
+									"p",
+									null,
+									"This is an example of responsive design, and mobile first development. Note: The buttons are not actually functional"
+								)
+							),
+							React.createElement(
+								"div",
+								{ className: "card-action" },
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Responsive-site/index.html" },
+									"Take a look!"
+								)
+							)
+						)
+					),
 					React.createElement(
-						"a",
-						{ href: "../../my-sites/Design-Like-Mad/index.html" },
-						" Design Like Mad!"
-					)
-				),
-				React.createElement(
-					"span",
-					null,
+						"div",
+						{ className: "col s12 m6 l4" },
+						React.createElement(
+							"div",
+							{ className: "card medium" },
+							React.createElement(
+								"div",
+								{ className: "card-image" },
+								React.createElement("img", { src: "../../images/sbl.png" })
+							),
+							React.createElement(
+								"div",
+								{ className: "card-content" },
+								React.createElement(
+									"span",
+									{ className: "card-title" },
+									"Simple Blog Platform"
+								),
+								React.createElement(
+									"p",
+									null,
+									"Example of a simple blogging platform using React, and Backbone. The blog uses CookieJS for simulated user permissions, and mockaroo for mock data"
+								)
+							),
+							React.createElement(
+								"div",
+								{ className: "card-action" },
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Simple-Blog/index.html" },
+									"Take a look!"
+								)
+							)
+						)
+					),
 					React.createElement(
-						"a",
-						{ href: "../../my-sites/Simple-Blog/index.html" },
-						"Simple-Blog"
+						"div",
+						{ className: "col s12 m12 l4" },
+						React.createElement(
+							"div",
+							{ className: "card medium" },
+							React.createElement(
+								"div",
+								{ className: "card-image" },
+								React.createElement("img", { src: "../../images/dlm.png" })
+							),
+							React.createElement(
+								"div",
+								{ className: "card-content" },
+								React.createElement(
+									"span",
+									{ className: "card-title" },
+									"Design Like Mad"
+								),
+								React.createElement(
+									"p",
+									null,
+									"Used a sorting algorithm to sort applicants intelligently into appropriate non-profit teams based on the applicant’s skill rating, designer type, and the non-profits project type. It also allows applicants to apply, and organizers to check on the applicant’s portfolio and rate them"
+								)
+							),
+							React.createElement(
+								"div",
+								{ className: "card-action" },
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Design-Like-Mad/index.html" },
+									"Take a look!"
+								)
+							)
+						)
 					)
 				)
 			)

@@ -4,8 +4,8 @@ nav {
   padding-right: 10px; }
 
 section {
-  padding-right: 20%;
-  padding-left: 20%;
+  padding-right: 15%;
+  padding-left: 15%;
   line-height: 25px; }
 
 .success {
@@ -28,6 +28,15 @@ footer {
   width: 100%; }
   footer label {
     color: white; }
+
+.card .card-content .card-title {
+  color: black; }
+
+.card.small .card-content, .card.medium .card-content, .card.large .card-content {
+  overflow: scroll; }
+
+.card.medium .card-image {
+  height: 170px; }
 
 form {
   text-align: center; }
