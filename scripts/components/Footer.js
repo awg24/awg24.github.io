@@ -10,7 +10,7 @@ module.exports = React.createClass({
 						<img className="reduce some-margin" src="../../images/Twitter_logo_white.png"/>
 					</a>
 					<a className="right" href="https://github.com/awg24">	
-						<img className="some-margin" src="../../images/Github-Mark-Light-32px.png"/>
+						<img className="some-margin" src="../../images/GitHub-Mark-Light-32px.png"/>
 					</a>
 				</div>
 			</div>
