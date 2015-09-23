@@ -35404,14 +35404,81 @@ module.exports = React.createClass({
 				ReactCSSTransitionGroup,
 				{ transitionName: "example", transitionAppear: true, transitionLeave: false },
 				React.createElement(
-					"h3",
+					"h4",
 					null,
-					"About Me"
+					"Hi, My name is Allen and welcome to my portfolio site!"
 				),
 				React.createElement(
-					"span",
+					"label",
 					null,
-					"This is all about me!This is all about me!This is all about me! 3This is all about me!This is all about me!This is all about me!"
+					"Go Away."
+				),
+				React.createElement(
+					"p",
+					null,
+					"Just kidding, so a little about me.. I grew up in Brownsville, TX, attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics, and an Associates in Computer Science. After I graduated, I became a high school math teacher, and after a year I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their coding bootcamp and embarked on a 3 month jounrney in Front-End development.",
+					React.createElement("br", null),
+					"Feel Free to look through my samples via the ",
+					React.createElement(
+						"strong",
+						null,
+						"Work"
+					),
+					" tab, and shoot me an email via ",
+					React.createElement(
+						"strong",
+						null,
+						"Contact!"
+					)
+				),
+				React.createElement(
+					"h4",
+					null,
+					"Skills:"
+				),
+				React.createElement(
+					"ul",
+					null,
+					React.createElement(
+						"li",
+						null,
+						"Javascript"
+					),
+					React.createElement(
+						"li",
+						null,
+						"Jquery"
+					),
+					React.createElement(
+						"li",
+						null,
+						"BackboneJS"
+					),
+					React.createElement(
+						"li",
+						null,
+						"ReactJS"
+					),
+					React.createElement(
+						"li",
+						null,
+						"CSS frameworks (Bootstrap, Materialize)"
+					),
+					React.createElement(
+						"li",
+						null,
+						"HTML5"
+					),
+					React.createElement(
+						"li",
+						null,
+						"CSS3"
+					),
+					React.createElement(
+						"li",
+						null,
+						"Responsive/Mobile First Design"
+					)
 				)
 			)
 		);
@@ -35449,7 +35516,7 @@ module.exports = React.createClass({
 				ReactCSSTransitionGroup,
 				{ transitionName: "example", component: "div", transitionAppear: true, transitionLeave: false },
 				React.createElement(
-					"h3",
+					"h4",
 					null,
 					"So you want to talk, hm?"
 				),
@@ -35674,7 +35741,7 @@ module.exports = React.createClass({
 				ReactCSSTransitionGroup,
 				{ transitionName: "example", transitionAppear: true, transitionLeave: false },
 				React.createElement(
-					"h3",
+					"h4",
 					null,
 					"Some Samples for Viewing"
 				),

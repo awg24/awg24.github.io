@@ -16,7 +16,7 @@ module.exports = React.createClass({
 			<section>
 				<div id="success-message" className="success">Message Sent!</div>
 				<ReactCSSTransitionGroup transitionName="example" component="div" transitionAppear={true} transitionLeave={false}>
-					<h3>So you want to talk, hm?</h3>
+					<h4>So you want to talk, hm?</h4>
 					<form>
 						<div className="input-field">
 							<input type="text" ref="name" placeholder="Name"/>
