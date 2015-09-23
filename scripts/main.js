@@ -16,7 +16,7 @@ React.render(<Footer/>, footerEl);
 
 var Site = Backbone.Router.extend({
 	routes:{
-		"":"myWork",
+		"":"about",
 		"work":"myWork",
 		"about":"about",
 		"contact":"contact"

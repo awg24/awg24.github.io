@@ -35894,7 +35894,7 @@ React.render(React.createElement(Footer, null), footerEl);
 
 var Site = Backbone.Router.extend({
 	routes: {
-		"": "myWork",
+		"": "about",
 		"work": "myWork",
 		"about": "about",
 		"contact": "contact"
