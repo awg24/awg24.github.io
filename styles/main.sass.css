@@ -43,6 +43,10 @@ form {
   form label {
     color: red; }
 
+.resize {
+  height: 400px;
+  width: 400px; }
+
 .reduce {
   height: 32px;
   width: 32px; }

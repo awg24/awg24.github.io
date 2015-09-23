@@ -19,17 +19,24 @@ module.exports = React.createClass({
 							Feel Free to look through my samples via the <strong>Work</strong> tab, and shoot me an email 
 							via <strong>Contact!</strong>
 						</p>
-						<h4>Skills:</h4>
-						<ul>
-							<li>Javascript</li>
-							<li>Jquery</li>
-							<li>BackboneJS</li>
-							<li>ReactJS</li>
-							<li>CSS frameworks (Bootstrap, Materialize)</li>
-							<li>HTML5</li>
-							<li>CSS3</li>
-							<li>Responsive/Mobile First Design</li>
-						</ul>
+						<div className="row">
+							<div className="col s6">
+								<h4>Skills:</h4>
+								<ul>
+									<li>Javascript</li>
+									<li>Jquery</li>
+									<li>BackboneJS</li>
+									<li>ReactJS</li>
+									<li>CSS frameworks (Bootstrap, Materialize)</li>
+									<li>HTML5</li>
+									<li>CSS3</li>
+									<li>Responsive/Mobile First Design</li>
+								</ul>
+							</div>
+							<div className="col s6">
+								<img className="responsive-img resize" src="../../images/me.jpg"/>
+							</div>
+						</div>
 				</ReactCSSTransitionGroup>
 			</section>
 		);

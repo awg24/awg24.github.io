@@ -35432,52 +35432,65 @@ module.exports = React.createClass({
 					)
 				),
 				React.createElement(
-					"h4",
-					null,
-					"Skills:"
-				),
-				React.createElement(
-					"ul",
-					null,
+					"div",
+					{ className: "row" },
 					React.createElement(
-						"li",
-						null,
-						"Javascript"
+						"div",
+						{ className: "col s6" },
+						React.createElement(
+							"h4",
+							null,
+							"Skills:"
+						),
+						React.createElement(
+							"ul",
+							null,
+							React.createElement(
+								"li",
+								null,
+								"Javascript"
+							),
+							React.createElement(
+								"li",
+								null,
+								"Jquery"
+							),
+							React.createElement(
+								"li",
+								null,
+								"BackboneJS"
+							),
+							React.createElement(
+								"li",
+								null,
+								"ReactJS"
+							),
+							React.createElement(
+								"li",
+								null,
+								"CSS frameworks (Bootstrap, Materialize)"
+							),
+							React.createElement(
+								"li",
+								null,
+								"HTML5"
+							),
+							React.createElement(
+								"li",
+								null,
+								"CSS3"
+							),
+							React.createElement(
+								"li",
+								null,
+								"Responsive/Mobile First Design"
+							)
+						)
 					),
 					React.createElement(
-						"li",
-						null,
-						"Jquery"
-					),
-					React.createElement(
-						"li",
-						null,
-						"BackboneJS"
-					),
-					React.createElement(
-						"li",
-						null,
-						"ReactJS"
-					),
-					React.createElement(
-						"li",
-						null,
-						"CSS frameworks (Bootstrap, Materialize)"
-					),
-					React.createElement(
-						"li",
-						null,
-						"HTML5"
-					),
-					React.createElement(
-						"li",
-						null,
-						"CSS3"
-					),
-					React.createElement(
-						"li",
-						null,
-						"Responsive/Mobile First Design"
+						"div",
+						{ className: "col s6" },
+						React.createElement("img", { className: "responsive-img resize", src: "../../images/me.jpg" })
 					)
 				)
 			)
