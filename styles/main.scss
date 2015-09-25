@@ -47,6 +47,13 @@ footer {
 .card .card-content .card-title {
 	color: black;
 }
+.card .card-action a{
+	text-transform: none;
+	margin-right: 0px;
+}
+.card .card-action { 
+	padding: 20px 10px;
+}
 .card.small .card-content, .card.medium .card-content, .card.large .card-content {
 	overflow: scroll;
 }
