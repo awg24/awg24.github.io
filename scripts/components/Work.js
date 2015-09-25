@@ -32,7 +32,8 @@ module.exports = React.createClass({
 								<div className="card-content">
 									<span className="card-title">Simple Blog Platform</span>
 									<p>Example of a simple blogging platform using React, and Backbone.
-									 The blog uses CookieJS for simulated user permissions, and mockaroo for mock data</p>
+									 The blog uses CookieJS for simulated user permissions, but any user/password combination will let you in,
+									  feel free to add any posts!</p>
 								</div>
 								<div className="card-action">
 									<a href="../../my-sites/Simple-Blog/index.html">Take a look!</a>
@@ -49,7 +50,8 @@ module.exports = React.createClass({
 									<p>
 										Used a sorting algorithm to sort applicants intelligently into appropriate 
 										non-profit teams based on the applicant’s skill rating, designer type, and the non-profits project type. 
-										It also allows applicants to apply, and organizers to check on the applicant’s portfolio and rate them
+										It also allows applicants to apply, and organizers to check on the applicant’s portfolio and rate them.
+										Use user3/1234 or admin3/1234 for username/password, or just sign up on your own!
 									</p>
 								</div>
 								<div className="card-action">
