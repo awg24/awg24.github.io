@@ -1,7 +1,7 @@
 nav {
   background: #2e7d32;
-  padding-left: 10px;
-  padding-right: 10px; }
+  padding-left: 40px;
+  padding-right: 40px; }
 
 section {
   padding-right: 15%;
@@ -20,6 +20,9 @@ section {
   opacity: 0;
   transition: opacity 1s ease-out; }
 
+a strong {
+  color: black; }
+
 #container {
   min-height: 400px;
   margin-bottom: 100px;
@@ -28,7 +31,7 @@ section {
 footer {
   background: #2e7d32;
   position: fixed;
-  padding: 15px 15px;
+  padding: 15px 40px;
   bottom: 0;
   width: 100%;
   padding-top: -15px; }

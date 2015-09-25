@@ -35416,19 +35416,27 @@ module.exports = React.createClass({
 				React.createElement(
 					"p",
 					null,
-					"Just kidding, so a little about me.. I grew up in Brownsville, TX, attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics, and an Associates in Computer Science. After I graduated, I became a high school math teacher, and after a year I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their coding bootcamp and embarked on a 3 month jounrney in Front-End development.",
+					"Just kidding, so a little about me.. I grew up in Brownsville, TX, attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics, and an Associates in Computer Science. After I graduated, I became a high school math teacher, and after a year I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development.",
 					React.createElement("br", null),
 					"Feel Free to look through my samples via the ",
 					React.createElement(
-						"strong",
-						null,
-						"Work"
+						"a",
+						{ href: "#work" },
+						React.createElement(
+							"strong",
+							null,
+							"Work"
+						)
 					),
 					" tab, and shoot me an email via ",
 					React.createElement(
-						"strong",
-						null,
-						"Contact!"
+						"a",
+						{ href: "#contact" },
+						React.createElement(
+							"strong",
+							null,
+							"Contact!"
+						)
 					)
 				),
 				React.createElement(
@@ -35770,7 +35778,11 @@ module.exports = React.createClass({
 							React.createElement(
 								"div",
 								{ className: "card-image" },
-								React.createElement("img", { src: "../../images/rs.png" })
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Responsive-site/index.html" },
+									React.createElement("img", { src: "../../images/rs.png" })
+								)
 							),
 							React.createElement(
 								"div",
@@ -35806,7 +35818,11 @@ module.exports = React.createClass({
 							React.createElement(
 								"div",
 								{ className: "card-image" },
-								React.createElement("img", { src: "../../images/sbl.png" })
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Simple-Blog/index.html" },
+									React.createElement("img", { src: "../../images/sbl.png" })
+								)
 							),
 							React.createElement(
 								"div",
@@ -35842,7 +35858,11 @@ module.exports = React.createClass({
 							React.createElement(
 								"div",
 								{ className: "card-image" },
-								React.createElement("img", { src: "../../images/dlm.png" })
+								React.createElement(
+									"a",
+									{ href: "../../my-sites/Design-Like-Mad/index.html" },
+									React.createElement("img", { src: "../../images/dlm.png" })
+								)
 							),
 							React.createElement(
 								"div",

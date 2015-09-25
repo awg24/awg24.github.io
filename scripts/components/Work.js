@@ -12,7 +12,7 @@ module.exports = React.createClass({
 						<div className="col s12 m6 l4">
 							<div className="card medium">
 								<div className="card-image">
-									<img src="../../images/rs.png"/>
+									<a href="../../my-sites/Responsive-site/index.html"><img src="../../images/rs.png"/></a>
 								</div>
 								<div className="card-content">
 									<span className="card-title">Responsive Site</span>
@@ -27,7 +27,7 @@ module.exports = React.createClass({
 						<div className="col s12 m6 l4">
 							<div className="card medium">
 								<div className="card-image">
-									<img src="../../images/sbl.png"/>
+									<a href="../../my-sites/Simple-Blog/index.html"><img src="../../images/sbl.png"/></a>
 								</div>
 								<div className="card-content">
 									<span className="card-title">Simple Blog Platform</span>
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 						<div className="col s12 m12 l4">
 							<div className="card medium">
 								<div className="card-image">
-									<img src="../../images/dlm.png"/>
+									<a href="../../my-sites/Design-Like-Mad/index.html"><img src="../../images/dlm.png"/></a>
 								</div>
 								<div className="card-content">
 									<span className="card-title">Design Like Mad</span>
