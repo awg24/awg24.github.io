@@ -17,10 +17,10 @@ module.exports = React.createClass({
 			</div>
 			<br/>
 			<form onSubmit={this.loginUser}>
-				<input ref="username" className="style-input2" placeholder="username" type="text"/>
+				<input ref="username" id="input" className="style-input2" placeholder="username" type="text"/>
 				<label className="error">{this.state.errors.username}</label>
 				<br/><br/>
-				<input className="style-input2" ref="password" type="password" placeholder="super secret password"/>
+				<input className="style-input2" id="input" ref="password" type="password" placeholder="super secret password"/>
 				<label className="error">{this.state.errors.password}</label>
 				<br/><br/>
 				<label>admin:</label>  <input name="user-type" value="admin" type="radio"/>

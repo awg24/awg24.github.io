@@ -33446,7 +33446,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"form",
 				{ onSubmit: this.loginUser },
-				React.createElement("input", { ref: "username", className: "style-input2", placeholder: "username", type: "text" }),
+				React.createElement("input", { ref: "username", id: "input", className: "style-input2", placeholder: "username", type: "text" }),
 				React.createElement(
 					"label",
 					{ className: "error" },
@@ -33454,7 +33454,7 @@ module.exports = React.createClass({
 				),
 				React.createElement("br", null),
 				React.createElement("br", null),
-				React.createElement("input", { className: "style-input2", ref: "password", type: "password", placeholder: "super secret password" }),
+				React.createElement("input", { className: "style-input2", id: "input", ref: "password", type: "password", placeholder: "super secret password" }),
 				React.createElement(
 					"label",
 					{ className: "error" },

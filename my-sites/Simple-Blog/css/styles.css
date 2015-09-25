@@ -63,7 +63,7 @@ body {
 	background-size: cover;
 	font-family: 'Raleway', sans-serif;
 }
-input::-webkit-input-placeholder {
+#input::-webkit-input-placeholder {
    color: white;
 }
 .content-box {
