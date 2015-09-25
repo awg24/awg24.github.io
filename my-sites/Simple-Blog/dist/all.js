@@ -33242,7 +33242,7 @@ module.exports = Backbone.Collection.extend({
 	url: "http://www.mockaroo.com/api/generate.json?key=e71c61c0&schema=blogList"
 });
 
-},{"../models/BlogModel":180,"backbone":1}],172:[function(require,module,exports){
+},{"../models/BlogModel":181,"backbone":1}],172:[function(require,module,exports){
 "use strict";
 
 var Backbone = require("backbone");
@@ -33252,7 +33252,7 @@ module.exports = Backbone.Collection.extend({
 	model: UserModel
 });
 
-},{"../models/UserModel":181,"backbone":1}],173:[function(require,module,exports){
+},{"../models/UserModel":182,"backbone":1}],173:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33263,7 +33263,9 @@ var NewPost = require("./NewPost");
 var SingleView = require("./SingleView");
 var BlogCollection = require("../collections/BlogCollection");
 var FakePost = require("../models/BlogModel");
-var blogCollection = new BlogCollection();
+var mockData = require("./MockData");
+console.log(mockData);
+var blogCollection = new BlogCollection(mockData);
 
 var containerEl = document.getElementById("container");
 Modal.setAppElement(containerEl);
@@ -33413,7 +33415,7 @@ function pagination(array, page) {
 	return sectionOf;
 }
 
-},{"../collections/BlogCollection":171,"../models/BlogModel":180,"./NewPost":175,"./Pagination":177,"./SingleView":178,"backbone/node_modules/underscore":2,"react":170,"react-modal":13}],174:[function(require,module,exports){
+},{"../collections/BlogCollection":171,"../models/BlogModel":181,"./MockData":175,"./NewPost":176,"./Pagination":178,"./SingleView":179,"backbone/node_modules/underscore":2,"react":170,"react-modal":13}],174:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33512,7 +33514,40 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/UserModel":181,"jquery":4,"js-cookie":5,"react":170}],175:[function(require,module,exports){
+},{"../models/UserModel":182,"jquery":4,"js-cookie":5,"react":170}],175:[function(require,module,exports){
+"use strict";
+
+module.exports = [{
+	id: 1,
+	title: "How To",
+	feelings: "Go ahead and feel free to submit new posts. If you signed in as a user, go ahead and sign in as an 'admin' to see more functionality!"
+}, {
+	id: 2,
+	title: "blog 2",
+	feelings: "This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. "
+}, {
+	id: 3,
+	title: "blog 3",
+	feelings: "TThis is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. "
+}, {
+	id: 4,
+	title: "blog 4",
+	feelings: "This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. "
+}, {
+	id: 5,
+	title: "blog 5",
+	feelings: "This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. "
+}, {
+	id: 6,
+	title: "blog 6",
+	feelings: "This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. ."
+}, {
+	id: 7,
+	title: "blog 7",
+	feelings: "This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. This is not a tribute, this is the greatest blog .. ever. "
+}];
+
+},{}],176:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33607,7 +33642,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/BlogModel":180,"react":170}],176:[function(require,module,exports){
+},{"../models/BlogModel":181,"react":170}],177:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33628,7 +33663,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":170}],177:[function(require,module,exports){
+},{"react":170}],178:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33717,7 +33752,7 @@ function getPageNumbers(array) {
 	return pages;
 }
 
-},{"react":170}],178:[function(require,module,exports){
+},{"react":170}],179:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33752,7 +33787,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":170}],179:[function(require,module,exports){
+},{"react":170}],180:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -33792,7 +33827,7 @@ var Blog = Backbone.Router.extend({
 var myRoutes = new Blog();
 Backbone.history.start();
 
-},{"./collections/UserCollection":172,"./components/BlogList":173,"./components/Login":174,"./components/NewPost":175,"./components/NoPermission":176,"./models/UserModel":181,"backbone":1,"backbone/node_modules/underscore":2,"js-cookie":5,"react":170}],180:[function(require,module,exports){
+},{"./collections/UserCollection":172,"./components/BlogList":173,"./components/Login":174,"./components/NewPost":176,"./components/NoPermission":177,"./models/UserModel":182,"backbone":1,"backbone/node_modules/underscore":2,"js-cookie":5,"react":170}],181:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33824,7 +33859,7 @@ module.exports = Backbone.Model.extend({
 	urlRoot: "http://www.mockaroo.com/api/generate.json?key=e71c61c0&schema=blogList"
 });
 
-},{"backbone":1,"backbone/node_modules/underscore":2,"react":170}],181:[function(require,module,exports){
+},{"backbone":1,"backbone/node_modules/underscore":2,"react":170}],182:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -33860,7 +33895,7 @@ module.exports = Backbone.Model.extend({
 	}
 });
 
-},{"backbone":1,"backbone/node_modules/underscore":2,"react":170}]},{},[179])
+},{"backbone":1,"backbone/node_modules/underscore":2,"react":170}]},{},[180])
 
 
 //# sourceMappingURL=all.js.map

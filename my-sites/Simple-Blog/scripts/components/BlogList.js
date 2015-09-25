@@ -6,7 +6,9 @@ var NewPost = require("./NewPost");
 var SingleView = require("./SingleView");
 var BlogCollection = require("../collections/BlogCollection");
 var FakePost = require("../models/BlogModel");
-var blogCollection = new BlogCollection();
+var mockData = require("./MockData");
+console.log(mockData);
+var blogCollection = new BlogCollection(mockData);
 
 var containerEl = document.getElementById("container");
 Modal.setAppElement(containerEl);
