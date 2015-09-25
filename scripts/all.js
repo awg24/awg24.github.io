@@ -35805,6 +35805,11 @@ module.exports = React.createClass({
 									"a",
 									{ href: "../../my-sites/Responsive-site/index.html" },
 									"Take a look!"
+								),
+								React.createElement(
+									"a",
+									{ className: "right", href: "https://github.com/awg24/bootstrap-site" },
+									"View the Code!"
 								)
 							)
 						)
@@ -35845,6 +35850,11 @@ module.exports = React.createClass({
 									"a",
 									{ href: "../../my-sites/Simple-Blog/index.html" },
 									"Take a look!"
+								),
+								React.createElement(
+									"a",
+									{ className: "right", href: "https://github.com/awg24/react-style-blog" },
+									"View the Code!"
 								)
 							)
 						)
@@ -35885,6 +35895,11 @@ module.exports = React.createClass({
 									"a",
 									{ href: "../../my-sites/Design-Like-Mad/index.html" },
 									"Take a look!"
+								),
+								React.createElement(
+									"a",
+									{ className: "right", href: "https://github.com/awg24/design-like-mad-redux" },
+									"View the Code!"
 								)
 							)
 						)

@@ -1,3 +1,6 @@
+@-ms-viewport {
+  width: device-width; }
+
 nav {
   background: #2e7d32;
   padding-left: 40px;
