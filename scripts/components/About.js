@@ -10,10 +10,10 @@ module.exports = React.createClass({
 						<h4>Hi, My name is Allen and welcome to my portfolio site!</h4>
 						<label>Go Away.</label>
 						<p>
-							Just kidding, so a little about me.. I grew up in Brownsville, TX, attended the University of 
+							Just kidding, so a little about me.. I grew up in Brownsville, TX, and attended the University of 
 							Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors 
-							in Mathematics, and an Associates in Computer Science. After I graduated, I became a high school
-							math teacher, and after a year I realized that it was not the career path for me. I soon realized
+							in Mathematics and an Associates in Computer Science. After I graduated, I became a high school
+							math teacher. After a year, I realized that it was not the career path for me. I soon realized
 							that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their 
 							coding bootcamp and embarked on a 3 month journey in Front-End development.<br/>
 							Feel Free to look through my samples via the <a href="#work"><strong>Work</strong></a> tab, and shoot me an email 
@@ -30,6 +30,7 @@ module.exports = React.createClass({
 									<li>CSS frameworks (Bootstrap, Materialize)</li>
 									<li>HTML5</li>
 									<li>CSS3</li>
+									<li>Sass</li>
 									<li>Responsive/Mobile First Design</li>
 								</ul>
 							</div>
