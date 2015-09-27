@@ -35953,7 +35953,7 @@ var Site = Backbone.Router.extend({
 	work: function work(x) {
 		var pos = x || 0;
 		React.render(React.createElement(About, null), containerEl);
-		window.scrollTo(0, pos);
+		window.scrollTo(0, pos + 100);
 	},
 	contact: function contact() {
 		React.render(React.createElement(Contact, { router: this }), containerEl);
