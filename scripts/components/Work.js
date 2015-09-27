@@ -7,7 +7,7 @@ module.exports = React.createClass({
 			<article>
 				<div id="success-message" className="success">Message Sent!</div>
 				<ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionLeave={false}>
-					<h4 ref="height">Some Samples for Viewing</h4><a href="#">Back To Top</a>
+					<h4 ref="height">Previous Work</h4><a href="#">Back To Top</a>
 					<div className="row">
 						<div className="col s12 m6 l4">
 							<div className="card medium">

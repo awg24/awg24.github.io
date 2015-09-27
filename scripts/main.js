@@ -25,9 +25,9 @@ var Site = Backbone.Router.extend({
 		React.render(<About />, containerEl);
 	},
 	work: function(x){
-		var pos = x || 0;
+		var pos = x+100 || 0;
 		React.render(<About/>, containerEl);
-		window.scrollTo(0, (pos+100);
+		window.scrollTo(0, pos);
 	},
 	contact: function(){
 		React.render(<Contact router={this}/>, containerEl);

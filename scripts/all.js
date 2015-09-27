@@ -35772,7 +35772,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"h4",
 					{ ref: "height" },
-					"Some Samples for Viewing"
+					"Previous Work"
 				),
 				React.createElement(
 					"a",
@@ -35951,9 +35951,9 @@ var Site = Backbone.Router.extend({
 		React.render(React.createElement(About, null), containerEl);
 	},
 	work: function work(x) {
-		var pos = x || 0;
+		var pos = x + 100 || 0;
 		React.render(React.createElement(About, null), containerEl);
-		window.scrollTo(0, pos + 100);
+		window.scrollTo(0, pos);
 	},
 	contact: function contact() {
 		React.render(React.createElement(Contact, { router: this }), containerEl);
