@@ -24,9 +24,6 @@ section {
   opacity: 0;
   transition: opacity 1s ease-out; }
 
-a strong {
-  color: black; }
-
 #container {
   min-height: 400px;
   margin-bottom: 100px;

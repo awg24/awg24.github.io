@@ -17,18 +17,20 @@ React.render(<Footer/>, footerEl);
 var Site = Backbone.Router.extend({
 	routes:{
 		"":"about",
-		"work":"myWork",
 		"about":"about",
+		"worksample(/:x)":"work",
 		"contact":"contact"
 	},
 	about: function(){
-		React.render(<About/>, containerEl);
+		React.render(<About />, containerEl);
 	},
-	myWork: function(){
-		React.render(<Work/>, containerEl);
+	work: function(x){
+		var pos = x || 0;
+		React.render(<About/>, containerEl);
+		window.scrollTo(0, pos);
 	},
 	contact: function(){
-		React.render(<Contact/>, containerEl);
+		React.render(<Contact router={this}/>, containerEl);
 	}
 });
 

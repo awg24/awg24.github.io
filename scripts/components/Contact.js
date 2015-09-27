@@ -70,8 +70,8 @@ module.exports = React.createClass({
 					}).done(function(response) {
 						document.getElementById("success-message").innerHTML = "Message Sent!";
 						window.setTimeout(function(){
-							document.getElementById("success-message").style.opacity = 0;
-						}, 2500);
+							that.props.router.navigate("about", {trigger: true});
+						},700);
 					});
 		}
 	}

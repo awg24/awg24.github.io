@@ -1,7 +1,13 @@
 var React = require("react/addons");
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Work = require("./Work");
 
 module.exports = React.createClass({
+	getInitialState: function(){
+		return {
+			position: 0
+		}
+	},
 	render: function(){
 		return (
 			<section>
@@ -16,8 +22,8 @@ module.exports = React.createClass({
 							math teacher. After a year, I realized that it was not the career path for me. I soon realized
 							that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their 
 							coding bootcamp and embarked on a 3 month journey in Front-End development.<br/>
-							Feel Free to look through my samples via the <a href="#work"><strong>Work</strong></a> tab, and shoot me an email 
-							via <a href="#contact"><strong>Contact!</strong></a>
+							Feel Free to look through my samples <a href={"#worksample/"+this.state.position}><strong>down below</strong></a>, and shoot me an email 
+							via the <a href="#contact"><strong>contact</strong></a> page!
 						</p>
 						<div className="row">
 							<div className="col s6">
@@ -38,8 +44,13 @@ module.exports = React.createClass({
 								<img className="responsive-img resize" src="../../images/me.jpg"/>
 							</div>
 						</div>
+						<Work ref="position"/>
 				</ReactCSSTransitionGroup>
 			</section>
 		);
+	},
+	componentDidMount: function(){
+		console.log(this.refs.position.getDOMNode().getBoundingClientRect());
+		this.setState({position: this.refs.position.getDOMNode().getBoundingClientRect().top});
 	}
 });

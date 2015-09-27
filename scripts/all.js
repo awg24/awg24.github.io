@@ -35387,10 +35387,16 @@ module.exports = require('./lib/React');
 
 var React = require("react/addons");
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var Work = require("./Work");
 
 module.exports = React.createClass({
 	displayName: "exports",
 
+	getInitialState: function getInitialState() {
+		return {
+			position: 0
+		};
+	},
 	render: function render() {
 		return React.createElement(
 			"section",
@@ -35418,26 +35424,27 @@ module.exports = React.createClass({
 					null,
 					"Just kidding, so a little about me.. I grew up in Brownsville, TX, and attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics and an Associates in Computer Science. After I graduated, I became a high school math teacher. After a year, I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development.",
 					React.createElement("br", null),
-					"Feel Free to look through my samples via the ",
+					"Feel Free to look through my samples ",
 					React.createElement(
 						"a",
-						{ href: "#work" },
+						{ href: "#worksample/" + this.state.position },
 						React.createElement(
 							"strong",
 							null,
-							"Work"
+							"down below"
 						)
 					),
-					" tab, and shoot me an email via ",
+					", and shoot me an email via the ",
 					React.createElement(
 						"a",
 						{ href: "#contact" },
 						React.createElement(
 							"strong",
 							null,
-							"Contact!"
+							"contact"
 						)
-					)
+					),
+					" page!"
 				),
 				React.createElement(
 					"div",
@@ -35505,13 +35512,18 @@ module.exports = React.createClass({
 						{ className: "col s6" },
 						React.createElement("img", { className: "responsive-img resize", src: "../../images/me.jpg" })
 					)
-				)
+				),
+				React.createElement(Work, { ref: "position" })
 			)
 		);
+	},
+	componentDidMount: function componentDidMount() {
+		console.log(this.refs.position.getDOMNode().getBoundingClientRect());
+		this.setState({ position: this.refs.position.getDOMNode().getBoundingClientRect().top });
 	}
 });
 
-},{"react/addons":5}],180:[function(require,module,exports){
+},{"./Work":183,"react/addons":5}],180:[function(require,module,exports){
 "use strict";
 
 var React = require("react/addons");
@@ -35622,8 +35634,8 @@ module.exports = React.createClass({
 			}).done(function (response) {
 				document.getElementById("success-message").innerHTML = "Message Sent!";
 				window.setTimeout(function () {
-					document.getElementById("success-message").style.opacity = 0;
-				}, 2500);
+					that.props.router.navigate("about", { trigger: true });
+				}, 700);
 			});
 		}
 	}
@@ -35726,15 +35738,6 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							"a",
-							{ href: "#work" },
-							"My Work"
-						)
-					),
-					React.createElement(
-						"li",
-						null,
-						React.createElement(
-							"a",
 							{ href: "#contact" },
 							"Contact"
 						)
@@ -35756,7 +35759,7 @@ module.exports = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"section",
+			"article",
 			null,
 			React.createElement(
 				"div",
@@ -35768,8 +35771,13 @@ module.exports = React.createClass({
 				{ transitionName: "example", transitionAppear: true, transitionLeave: false },
 				React.createElement(
 					"h4",
-					null,
+					{ ref: "height" },
 					"Some Samples for Viewing"
+				),
+				React.createElement(
+					"a",
+					{ href: "#" },
+					"Back To Top"
 				),
 				React.createElement(
 					"div",
@@ -35935,18 +35943,20 @@ React.render(React.createElement(Footer, null), footerEl);
 var Site = Backbone.Router.extend({
 	routes: {
 		"": "about",
-		"work": "myWork",
 		"about": "about",
+		"worksample(/:x)": "work",
 		"contact": "contact"
 	},
 	about: function about() {
 		React.render(React.createElement(About, null), containerEl);
 	},
-	myWork: function myWork() {
-		React.render(React.createElement(Work, null), containerEl);
+	work: function work(x) {
+		var pos = x || 0;
+		React.render(React.createElement(About, null), containerEl);
+		window.scrollTo(0, pos);
 	},
 	contact: function contact() {
-		React.render(React.createElement(Contact, null), containerEl);
+		React.render(React.createElement(Contact, { router: this }), containerEl);
 	}
 });
 
