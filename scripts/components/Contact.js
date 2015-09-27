@@ -71,7 +71,7 @@ module.exports = React.createClass({
 						document.getElementById("success-message").innerHTML = "Message Sent!";
 						window.setTimeout(function(){
 							that.props.router.navigate("about", {trigger: true});
-						},700);
+						},1000);
 					});
 		}
 	}
