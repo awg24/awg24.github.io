@@ -35418,12 +35418,20 @@ module.exports = React.createClass({
 				React.createElement(
 					"p",
 					null,
-					"Just kidding, so a little about me.. I grew up in Brownsville, TX, and attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics and an Associates in Computer Science. After I graduated, I became a high school math teacher. After a year, I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development.",
-					React.createElement("br", null),
-					"Feel Free to look through my samples ",
+					"Just kidding, so a little about me.. I grew up in Brownsville, TX, and attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics and an Associates in Computer Science. After I graduated, I became a high school math teacher. After a year, I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found ",
 					React.createElement(
 						"a",
-						{ onClick: this.fireScroll },
+						{ href: "http://theironyard.com/courses/front-end-engineering/" },
+						React.createElement(
+							"strong",
+							null,
+							"The Iron Yard"
+						)
+					),
+					". I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development. Feel Free to look through my samples ",
+					React.createElement(
+						"a",
+						{ onClick: this.scrollFire },
 						React.createElement(
 							"strong",
 							null,
@@ -35440,7 +35448,14 @@ module.exports = React.createClass({
 							"contact"
 						)
 					),
-					" page!"
+					" page if you want to get to know me a little more!",
+					React.createElement("br", null),
+					React.createElement("br", null),
+					React.createElement(
+						"label",
+						null,
+						"*This portfolio site was made with React, Backbone, and Materialize."
+					)
 				),
 				React.createElement(
 					"div",
@@ -35509,11 +35524,11 @@ module.exports = React.createClass({
 						React.createElement("img", { className: "responsive-img resize", src: "../../images/me.jpg" })
 					)
 				),
-				React.createElement(Work, { ref: "position" })
+				React.createElement(Work, null)
 			)
 		);
 	},
-	fireScroll: function fireScroll() {
+	scrollFire: function scrollFire() {
 		window.scrollTo(0, element);
 	},
 	componentDidMount: function componentDidMount() {

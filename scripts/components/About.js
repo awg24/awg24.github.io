@@ -16,10 +16,12 @@ module.exports = React.createClass({
 							Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors 
 							in Mathematics and an Associates in Computer Science. After I graduated, I became a high school
 							math teacher. After a year, I realized that it was not the career path for me. I soon realized
-							that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their 
-							coding bootcamp and embarked on a 3 month journey in Front-End development.<br/>
-							Feel Free to look through my samples <a onClick={this.fireScroll}><strong>down below</strong></a>, and shoot me an email 
-							via the <a href="#contact"><strong>contact</strong></a> page!
+							that I definitely wanted to do programming, which is when I found <a href="http://theironyard.com/courses/front-end-engineering/"><strong>The Iron Yard</strong></a>. I enrolled in their 
+							coding bootcamp and embarked on a 3 month journey in Front-End development. 
+							Feel Free to look through my samples <a onClick={this.scrollFire}><strong>down below</strong></a>, and shoot me an email 
+							via the <a href="#contact"><strong>contact</strong></a> page if you want to get to know me a little more!<br/><br/> 
+							<label>*This portfolio site was made with React, Backbone, and 
+							Materialize.</label>
 						</p>
 						<div className="row">
 							<div className="col s6">
@@ -40,12 +42,12 @@ module.exports = React.createClass({
 								<img className="responsive-img resize" src="../../images/me.jpg"/>
 							</div>
 						</div>
-						<Work ref="position"/>
+						<Work />
 				</ReactCSSTransitionGroup>
 			</section>
 		);
 	},
-	fireScroll: function(){
+	scrollFire: function(){
 		window.scrollTo(0, element);
 	},
 	componentDidMount: function(){
