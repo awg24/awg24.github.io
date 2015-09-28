@@ -12,6 +12,10 @@ section {
   line-height: 25px;
   margin-top: -15px; }
 
+p a {
+  cursor: pointer;
+  cursor: hand; }
+
 .success {
   width: 200px;
   padding: 10px;

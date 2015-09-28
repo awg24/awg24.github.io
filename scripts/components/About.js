@@ -1,13 +1,9 @@
 var React = require("react/addons");
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Work = require("./Work");
+var element;
 
 module.exports = React.createClass({
-	getInitialState: function(){
-		return {
-			position: 0
-		}
-	},
 	render: function(){
 		return (
 			<section>
@@ -22,7 +18,7 @@ module.exports = React.createClass({
 							math teacher. After a year, I realized that it was not the career path for me. I soon realized
 							that I definitely wanted to do programming, which is when I found The Iron Yard. I enrolled in their 
 							coding bootcamp and embarked on a 3 month journey in Front-End development.<br/>
-							Feel Free to look through my samples <a href={"#worksample/"+this.state.position}><strong>down below</strong></a>, and shoot me an email 
+							Feel Free to look through my samples <a onClick={this.fireScroll}><strong>down below</strong></a>, and shoot me an email 
 							via the <a href="#contact"><strong>contact</strong></a> page!
 						</p>
 						<div className="row">
@@ -49,8 +45,10 @@ module.exports = React.createClass({
 			</section>
 		);
 	},
+	fireScroll: function(){
+		window.scrollTo(0, element);
+	},
 	componentDidMount: function(){
-		console.log(this.refs.position.getDOMNode().getBoundingClientRect());
-		this.setState({position: this.refs.position.getDOMNode().getBoundingClientRect().top});
+		element = document.getElementById("previous-work").getBoundingClientRect().top+5;	
 	}
 });

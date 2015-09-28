@@ -10,6 +10,7 @@ var Footer = require("./components/Footer");
 var containerEl = document.getElementById("container");
 var navEl = document.getElementById("header");
 var footerEl = document.getElementById("footer");
+var element;
 
 React.render(<NavBar/>, navEl);
 React.render(<Footer/>, footerEl);
@@ -18,16 +19,10 @@ var Site = Backbone.Router.extend({
 	routes:{
 		"":"about",
 		"about":"about",
-		"worksample(/:x)":"work",
 		"contact":"contact"
 	},
 	about: function(){
-		React.render(<About />, containerEl);
-	},
-	work: function(x){
-		var pos = x+100 || 0;
-		React.render(<About/>, containerEl);
-		window.scrollTo(0, pos);
+		React.render(<About />, containerEl);	
 	},
 	contact: function(){
 		React.render(<Contact router={this}/>, containerEl);

@@ -35388,15 +35388,11 @@ module.exports = require('./lib/React');
 var React = require("react/addons");
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Work = require("./Work");
+var element;
 
 module.exports = React.createClass({
 	displayName: "exports",
 
-	getInitialState: function getInitialState() {
-		return {
-			position: 0
-		};
-	},
 	render: function render() {
 		return React.createElement(
 			"section",
@@ -35427,7 +35423,7 @@ module.exports = React.createClass({
 					"Feel Free to look through my samples ",
 					React.createElement(
 						"a",
-						{ href: "#worksample/" + this.state.position },
+						{ onClick: this.fireScroll },
 						React.createElement(
 							"strong",
 							null,
@@ -35517,9 +35513,11 @@ module.exports = React.createClass({
 			)
 		);
 	},
+	fireScroll: function fireScroll() {
+		window.scrollTo(0, element);
+	},
 	componentDidMount: function componentDidMount() {
-		console.log(this.refs.position.getDOMNode().getBoundingClientRect());
-		this.setState({ position: this.refs.position.getDOMNode().getBoundingClientRect().top });
+		element = document.getElementById("previous-work").getBoundingClientRect().top + 5;
 	}
 });
 
@@ -35771,7 +35769,7 @@ module.exports = React.createClass({
 				{ transitionName: "example", transitionAppear: true, transitionLeave: false },
 				React.createElement(
 					"h4",
-					{ ref: "height" },
+					{ id: "previous-work", ref: "height" },
 					"Previous Work"
 				),
 				React.createElement(
@@ -35936,6 +35934,7 @@ var Footer = require("./components/Footer");
 var containerEl = document.getElementById("container");
 var navEl = document.getElementById("header");
 var footerEl = document.getElementById("footer");
+var element;
 
 React.render(React.createElement(NavBar, null), navEl);
 React.render(React.createElement(Footer, null), footerEl);
@@ -35944,16 +35943,10 @@ var Site = Backbone.Router.extend({
 	routes: {
 		"": "about",
 		"about": "about",
-		"worksample(/:x)": "work",
 		"contact": "contact"
 	},
 	about: function about() {
 		React.render(React.createElement(About, null), containerEl);
-	},
-	work: function work(x) {
-		var pos = x + 100 || 0;
-		React.render(React.createElement(About, null), containerEl);
-		window.scrollTo(0, pos);
 	},
 	contact: function contact() {
 		React.render(React.createElement(Contact, { router: this }), containerEl);
