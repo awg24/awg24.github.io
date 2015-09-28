@@ -10,7 +10,6 @@ var Footer = require("./components/Footer");
 var containerEl = document.getElementById("container");
 var navEl = document.getElementById("header");
 var footerEl = document.getElementById("footer");
-var element;
 
 React.render(<NavBar/>, navEl);
 React.render(<Footer/>, footerEl);

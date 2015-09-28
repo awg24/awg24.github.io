@@ -35934,7 +35934,6 @@ var Footer = require("./components/Footer");
 var containerEl = document.getElementById("container");
 var navEl = document.getElementById("header");
 var footerEl = document.getElementById("footer");
-var element;
 
 React.render(React.createElement(NavBar, null), navEl);
 React.render(React.createElement(Footer, null), footerEl);
