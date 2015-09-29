@@ -20,8 +20,7 @@ module.exports = React.createClass({
 							coding bootcamp and embarked on a 3 month journey in Front-End development. 
 							Feel Free to look through my samples <a onClick={this.scrollFire}><strong>down below</strong></a>, and shoot me an email 
 							via the <a href="#contact"><strong>contact</strong></a> page if you want to get to know me a little more!<br/><br/> 
-							<label>*This portfolio site was made with React, Backbone, and 
-							Materialize.</label>
+							<label>This portfolio site is brought to you by React, Backbone, Materialize, Github pages, the letter H, and me!</label>
 						</p>
 						<div className="row">
 							<div className="col s6">

@@ -35454,7 +35454,7 @@ module.exports = React.createClass({
 					React.createElement(
 						"label",
 						null,
-						"*This portfolio site was made with React, Backbone, and Materialize."
+						"This portfolio site is brought to you by React, Backbone, Materialize, Github pages, the letter H, and me!"
 					)
 				),
 				React.createElement(
