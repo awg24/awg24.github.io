@@ -4,10 +4,10 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 module.exports = React.createClass({
 	render: function(){
 		return (
-			<article>
+			<section>
 				<div id="success-message" className="success">Message Sent!</div>
 				<ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionLeave={false}>
-					<h4 id="previous-work" ref="height">Previous Work</h4><a href="#">Back To Top</a>
+					<h4 id="previous-work" ref="height">Previous Work</h4>
 					<div className="row">
 						<div className="col s12 m6 l4">
 							<div className="card medium">
@@ -64,7 +64,7 @@ module.exports = React.createClass({
 						</div>
 					</div>
 				</ReactCSSTransitionGroup>
-			</article>
+			</section>
 		);
 	}
 });

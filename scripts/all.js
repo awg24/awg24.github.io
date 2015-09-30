@@ -35388,7 +35388,6 @@ module.exports = require('./lib/React');
 var React = require("react/addons");
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Work = require("./Work");
-var element;
 
 module.exports = React.createClass({
 	displayName: "exports",
@@ -35411,14 +35410,9 @@ module.exports = React.createClass({
 					"Hi, My name is Allen and welcome to my portfolio site!"
 				),
 				React.createElement(
-					"label",
-					null,
-					"Go Away."
-				),
-				React.createElement(
 					"p",
 					null,
-					"Just kidding, so a little about me.. I grew up in Brownsville, TX, and attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics and an Associates in Computer Science. After I graduated, I became a high school math teacher. After a year, I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found ",
+					"So a little about me.. I grew up in Brownsville, TX, and attended the University of Texas at Brownsville, now named University of Texas Rio Grande Valley. I obtained a Bachelors in Mathematics and an Associates in Computer Science. After I graduated, I became a high school math teacher. After a year, I realized that it was not the career path for me. I soon realized that I definitely wanted to do programming, which is when I found ",
 					React.createElement(
 						"a",
 						{ href: "http://theironyard.com/courses/front-end-engineering/" },
@@ -35428,17 +35422,17 @@ module.exports = React.createClass({
 							"The Iron Yard"
 						)
 					),
-					". I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development. Feel Free to look through my samples ",
+					". I enrolled in their coding bootcamp and embarked on a 3 month journey in Front-End development. Feel Free to look through my samples in the ",
 					React.createElement(
 						"a",
-						{ onClick: this.scrollFire },
+						{ href: "#work" },
 						React.createElement(
 							"strong",
 							null,
-							"down below"
+							"work"
 						)
 					),
-					", and shoot me an email via the ",
+					" page, and shoot me an email via the ",
 					React.createElement(
 						"a",
 						{ href: "#contact" },
@@ -35449,7 +35443,6 @@ module.exports = React.createClass({
 						)
 					),
 					" page if you want to get to know me a little more!",
-					React.createElement("br", null),
 					React.createElement("br", null),
 					React.createElement(
 						"label",
@@ -35523,16 +35516,9 @@ module.exports = React.createClass({
 						{ className: "col s6" },
 						React.createElement("img", { className: "responsive-img resize", src: "../../images/me.jpg" })
 					)
-				),
-				React.createElement(Work, null)
+				)
 			)
 		);
-	},
-	scrollFire: function scrollFire() {
-		window.scrollTo(0, element);
-	},
-	componentDidMount: function componentDidMount() {
-		element = document.getElementById("previous-work").getBoundingClientRect().top + 5;
 	}
 });
 
@@ -35751,6 +35737,15 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							"a",
+							{ href: "#work" },
+							"Work"
+						)
+					),
+					React.createElement(
+						"li",
+						null,
+						React.createElement(
+							"a",
 							{ href: "#contact" },
 							"Contact"
 						)
@@ -35772,7 +35767,7 @@ module.exports = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"article",
+			"section",
 			null,
 			React.createElement(
 				"div",
@@ -35786,11 +35781,6 @@ module.exports = React.createClass({
 					"h4",
 					{ id: "previous-work", ref: "height" },
 					"Previous Work"
-				),
-				React.createElement(
-					"a",
-					{ href: "#" },
-					"Back To Top"
 				),
 				React.createElement(
 					"div",
@@ -35957,6 +35947,7 @@ var Site = Backbone.Router.extend({
 	routes: {
 		"": "about",
 		"about": "about",
+		"work": "work",
 		"contact": "contact"
 	},
 	about: function about() {
@@ -35964,6 +35955,9 @@ var Site = Backbone.Router.extend({
 	},
 	contact: function contact() {
 		React.render(React.createElement(Contact, { router: this }), containerEl);
+	},
+	work: function work() {
+		React.render(React.createElement(Work, null), containerEl);
 	}
 });
 

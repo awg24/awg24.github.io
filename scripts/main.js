@@ -18,6 +18,7 @@ var Site = Backbone.Router.extend({
 	routes:{
 		"":"about",
 		"about":"about",
+		"work": "work",
 		"contact":"contact"
 	},
 	about: function(){
@@ -25,6 +26,9 @@ var Site = Backbone.Router.extend({
 	},
 	contact: function(){
 		React.render(<Contact router={this}/>, containerEl);
+	},
+	work: function(){
+		React.render(<Work />, containerEl);
 	}
 });
 
