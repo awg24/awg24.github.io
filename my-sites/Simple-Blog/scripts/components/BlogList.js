@@ -34,11 +34,11 @@ module.exports = React.createClass({
 	render: function(){
 		var links = [];
 		var button = [];
+
 		if(this.props.user.userType === "admin"){
 			button.push(<button key="add button" onClick={this.openModal} className="btn btn-primary">Submit a New Post!</button>);
-			links.push(<button key="button1" onClick={this.editPost} className="btn btn-info space">Edit</button>);
-			links.push(<button key="button2" onClick={this.deletePost} className="btn btn-info space">Delete</button>);
 		}
+
 		var that = this;
 		console.log(blogCollection);
 		var sortedCollection = _.sortBy(blogCollection.models, function(blog){
@@ -47,6 +47,11 @@ module.exports = React.createClass({
 		});
 		var pagedContent = pagination(sortedCollection,this.props.page);
 		var blogs = pagedContent.map(function(blog, index){
+			if(that.props.user.userType === "admin"){
+				
+				var editingButton = <button key="button1" value={blog.id} onClick={that.editPost} className="btn btn-info space">Edit</button>;
+				var deletebutton = <button key="button2" value={blog.id} onClick={that.deletePost} className="btn btn-info space">Delete</button>;
+			}
 			return (
 			<div key={blog.id} value={blog.id} className="blog-card center-block">
 				<button className="btn btn-primary" value={blog.id} onClick={that.openModal2}>View</button>
@@ -56,7 +61,8 @@ module.exports = React.createClass({
 				<div className="content-box padit">
 					<p>{blog.get("feelings")}</p>
 				</div>
-				{links}
+				{editingButton}
+				{deletebutton}
 			</div>
 			);
 		});
@@ -90,14 +96,12 @@ module.exports = React.createClass({
 	closeModal2: function() {
 		this.setState({modalIsOpen2: false});
 	},
-	deletePost: function(){
-		var cid = event.path[1].getAttribute("value");
-		blogCollection.remove(blogCollection.get(cid));
+	deletePost: function(e){
+		blogCollection.remove(blogCollection.get(event.target.value));
 		this.forceUpdate();
 	},
-	editPost: function(){
-		var cid = event.path[1].getAttribute("value");
-		this.setState({modalIsOpen: true, modelToGet:cid});
+	editPost: function(e){
+		this.setState({modalIsOpen: true, modelToGet:event.target.value});
 	}
 });
 function pagination(array, page){
