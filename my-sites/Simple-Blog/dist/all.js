@@ -33320,7 +33320,7 @@ module.exports = React.createClass({
 		var blogs = pagedContent.map(function (blog, index) {
 			return React.createElement(
 				"div",
-				{ key: blog.cid, value: blog.cid, className: "blog-card center-block" },
+				{ key: blog.cid, value: blog.id, className: "blog-card center-block" },
 				React.createElement(
 					"button",
 					{ className: "btn btn-primary", value: blog.id, onClick: that.openModal2 },
@@ -33389,7 +33389,7 @@ module.exports = React.createClass({
 	},
 	deletePost: function deletePost() {
 		var cid = event.path[1].getAttribute("value");
-		blogCollection.remove(blogCollection.get({ cid: cid }));
+		blogCollection.remove(blogCollection.get(cid));
 		this.forceUpdate();
 	},
 	editPost: function editPost() {
