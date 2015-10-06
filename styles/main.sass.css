@@ -3,8 +3,8 @@
 
 nav {
   background: #2e7d32;
-  padding-left: 40px;
-  padding-right: 40px; }
+  padding-left: 47px;
+  padding-right: 42px; }
 
 section {
   padding-right: 15%;
@@ -36,7 +36,7 @@ p a {
 footer {
   background: #2e7d32;
   position: fixed;
-  padding: 15px 40px;
+  padding: 15px 55px;
   bottom: 0;
   width: 100%;
   padding-top: -15px; }
