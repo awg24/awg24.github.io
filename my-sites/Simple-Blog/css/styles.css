@@ -10,7 +10,7 @@ h1, h3{
 form label {
 	color: white;
 }
-button {
+.btn {
 	cursor: pointer;
 	cursor: hand;
 }
