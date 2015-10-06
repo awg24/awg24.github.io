@@ -9,7 +9,7 @@ module.exports = React.createClass({
 				<ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionLeave={false}>
 					<h4 id="previous-work" ref="height">Previous Work</h4>
 					<div className="row">
-						<div className="col s12 m6 l4 add-padding">
+						<div className="col s12 m6 l4 add-padding onepad">
 							<div className="card medium">
 								<div className="card-image">
 									<a href="../../my-sites/Responsive-site/index.html"><img src="../../images/rs.png"/></a>
