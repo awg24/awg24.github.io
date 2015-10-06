@@ -35869,7 +35869,7 @@ module.exports = React.createClass({
 								),
 								React.createElement(
 									"a",
-									{ className: "right", href: "https://github.com/awg24/react-style-blog" },
+									{ className: "right", href: "https://github.com/awg24/awg24.github.io/tree/master/my-sites/Simple-Blog" },
 									"View the Code!"
 								)
 							)
