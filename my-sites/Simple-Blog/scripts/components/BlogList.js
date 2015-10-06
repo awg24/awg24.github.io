@@ -7,7 +7,6 @@ var SingleView = require("./SingleView");
 var BlogCollection = require("../collections/BlogCollection");
 var FakePost = require("../models/BlogModel");
 var mockData = require("./MockData");
-console.log(mockData);
 var blogCollection = new BlogCollection(mockData);
 
 var containerEl = document.getElementById("container");
@@ -20,6 +19,7 @@ module.exports = React.createClass({
 		blogCollection.fetch().then(function(data){
 			console.log(data);
 		}).done(function(){
+			blogCollection.add(mockData);
 			that.forceUpdate();
 		});
 	},
