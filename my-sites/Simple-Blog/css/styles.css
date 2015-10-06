@@ -10,6 +10,10 @@ h1, h3{
 form label {
 	color: white;
 }
+.btn {
+	cursor: pointer;
+	cursor: hand;
+}
 .shape {
 	margin-top: 225px;
 	width: 300px;
