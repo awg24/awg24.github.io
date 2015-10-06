@@ -33320,7 +33320,7 @@ module.exports = React.createClass({
 		var blogs = pagedContent.map(function (blog, index) {
 			return React.createElement(
 				"div",
-				{ key: blog.cid, value: blog.id, className: "blog-card center-block" },
+				{ key: blog.id, value: blog.id, className: "blog-card center-block" },
 				React.createElement(
 					"button",
 					{ className: "btn btn-primary", value: blog.id, onClick: that.openModal2 },

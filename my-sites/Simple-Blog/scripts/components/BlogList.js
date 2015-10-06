@@ -48,7 +48,7 @@ module.exports = React.createClass({
 		var pagedContent = pagination(sortedCollection,this.props.page);
 		var blogs = pagedContent.map(function(blog, index){
 			return (
-			<div key={blog.cid} value={blog.id} className="blog-card center-block">
+			<div key={blog.id} value={blog.id} className="blog-card center-block">
 				<button className="btn btn-primary" value={blog.id} onClick={that.openModal2}>View</button>
 				<div className="text-center">
 					<h2>{blog.get("title")}</h2>
