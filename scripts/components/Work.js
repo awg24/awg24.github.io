@@ -38,7 +38,7 @@ module.exports = React.createClass({
 								</div>
 								<div className="card-action">
 									<a href="../../my-sites/Simple-Blog/index.html">Take a look!</a>
-									<a className="right" href="https://github.com/awg24/react-style-blog">View the Code!</a>
+									<a className="right" href="https://github.com/awg24/awg24.github.io/tree/master/my-sites/Simple-Blog">View the Code!</a>
 								</div>
 							</div>
 						</div>
