@@ -108,6 +108,10 @@ body {
 }
 @media(max-width: 615px){
 	.blog-card {
-		width: 300px;
+		width: 70%;
+	}
+	.style-input {
+		width: 100%;
+		max-width: 100%;
 	}
 }
