@@ -35513,8 +35513,8 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "col s6" },
-						React.createElement("img", { className: "responsive-img resize", src: "../../images/me.jpg" })
+						{ className: "col offset-s1 s5" },
+						React.createElement("img", { className: "responsive-img", src: "../../images/me.jpg" })
 					)
 				)
 			)
@@ -35787,7 +35787,7 @@ module.exports = React.createClass({
 					{ className: "row" },
 					React.createElement(
 						"div",
-						{ className: "col s12 m6 l4" },
+						{ className: "col s12 m6 l4 add-padding" },
 						React.createElement(
 							"div",
 							{ className: "card medium" },
@@ -35832,7 +35832,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "col s12 m6 l4" },
+						{ className: "col s12 m6 l4 add-padding" },
 						React.createElement(
 							"div",
 							{ className: "card medium" },
@@ -35877,7 +35877,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "col s12 m12 l4" },
+						{ className: "col s12 m12 l4 add-padding" },
 						React.createElement(
 							"div",
 							{ className: "card medium" },

@@ -33,6 +33,12 @@ p a {
   margin-bottom: 100px;
   clear: both; }
 
+.row .col {
+  padding: 0; }
+
+.row .add-padding {
+  padding-right: 0.75em; }
+
 footer {
   background: #2e7d32;
   position: fixed;

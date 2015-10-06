@@ -35,8 +35,8 @@ module.exports = React.createClass({
 									<li>Responsive/Mobile First Design</li>
 								</ul>
 							</div>
-							<div className="col s6">
-								<img className="responsive-img resize" src="../../images/me.jpg"/>
+							<div className="col offset-s1 s5">
+								<img className="responsive-img" src="../../images/me.jpg"/>
 							</div>
 						</div>
 				</ReactCSSTransitionGroup>
