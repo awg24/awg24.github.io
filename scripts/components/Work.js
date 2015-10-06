@@ -42,7 +42,7 @@ module.exports = React.createClass({
 								</div>
 							</div>
 						</div>
-						<div className="col s12 m12 l4 add-padding">
+						<div className="col s12 m12 l4 add-padding nopad">
 							<div className="card medium">
 								<div className="card-image">
 									<a href="../../my-sites/Design-Like-Mad/index.html"><img src="../../images/dlm.png"/></a>

@@ -35877,7 +35877,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "col s12 m12 l4 add-padding" },
+						{ className: "col s12 m12 l4 add-padding nopad" },
 						React.createElement(
 							"div",
 							{ className: "card medium" },
