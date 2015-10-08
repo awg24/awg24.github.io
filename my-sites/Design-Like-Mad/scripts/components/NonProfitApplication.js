@@ -54,7 +54,7 @@ module.exports = React.createClass({
 					Non Profit Application
 				</div>
 				<div>
-					<input className="input-style" ref="orgName" type="text" defaultValue={nonProf.orgName} placeholder="Organization Name" />
+					<input className="input-style" ref="orgName" type="text" defaultValue={nonProf.g} placeholder="Organization Name" />
 				</div>
 				<div>
 					<input className="input-style" ref="site" type="text" defaultValue={nonProf.site} placeholder="Website (if any)" />
