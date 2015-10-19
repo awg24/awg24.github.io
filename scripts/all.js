@@ -35467,47 +35467,42 @@ module.exports = React.createClass({
 							React.createElement(
 								"li",
 								null,
+								"HTML/CSS"
+							),
+							React.createElement(
+								"li",
+								null,
 								"Javascript"
 							),
 							React.createElement(
 								"li",
 								null,
-								"Jquery"
+								"Frameworks/Libraries (React, Backbone, jQuery, Node)"
 							),
 							React.createElement(
 								"li",
 								null,
-								"BackboneJS"
+								"MV* architectural patterns"
 							),
 							React.createElement(
 								"li",
 								null,
-								"ReactJS"
+								"Responsive Design"
 							),
 							React.createElement(
 								"li",
 								null,
-								"CSS frameworks (Bootstrap, Materialize)"
+								"Working in a Rails environment in group projects with backenders and designers"
 							),
 							React.createElement(
 								"li",
 								null,
-								"HTML5"
+								"Hooking into RESTful APIs"
 							),
 							React.createElement(
 								"li",
 								null,
-								"CSS3"
-							),
-							React.createElement(
-								"li",
-								null,
-								"Sass"
-							),
-							React.createElement(
-								"li",
-								null,
-								"Responsive/Mobile First Design"
+								"Asynchronous programming"
 							)
 						)
 					),

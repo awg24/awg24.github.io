@@ -24,15 +24,14 @@ module.exports = React.createClass({
 							<div className="col s6">
 								<h4>Skills:</h4>
 								<ul>
+									<li>HTML/CSS</li>
 									<li>Javascript</li>
-									<li>Jquery</li>
-									<li>BackboneJS</li>
-									<li>ReactJS</li>
-									<li>CSS frameworks (Bootstrap, Materialize)</li>
-									<li>HTML5</li>
-									<li>CSS3</li>
-									<li>Sass</li>
-									<li>Responsive/Mobile First Design</li>
+									<li>Frameworks/Libraries (React, Backbone, jQuery, Node)</li>
+									<li>MV* architectural patterns</li>
+									<li>Responsive Design</li>
+									<li>Working in a Rails environment in group projects with backenders and designers</li>
+									<li>Hooking into RESTful APIs</li>
+									<li>Asynchronous programming</li>
 								</ul>
 							</div>
 							<div className="col offset-s1 s5">
